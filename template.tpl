@@ -93,6 +93,34 @@ ___TEMPLATE_PARAMETERS___
     ]
   },
   {
+    "type": "SELECT",
+    "name": "Region",
+    "displayName": "Region",
+    "selectItems": [
+      {
+        "value": "ams",
+        "displayValue": "EMEA"
+      },
+      {
+        "value": "us",
+        "displayValue": "Americas"
+      },
+      {
+        "value": "asia",
+        "displayValue": "Asia"
+      }
+    ],
+    "simpleValueType": true,
+    "help": "Please select your region. If you are not sure, contact your RTB House Customer Service Manager.",
+    "enablingConditions": [
+      {
+        "paramName": "advTaggingHash",
+        "paramValue": "",
+        "type": "PRESENT"
+      }
+    ]
+  },
+  {
     "type": "GROUP",
     "name": "tagGroup",
     "displayName": "Select tag type(s)",
@@ -1254,15 +1282,16 @@ const templateTagType = makeString(data.tagType);
 if (templateTagType === 'BASE_TAG') {
   
   const taggingHash = data.advTaggingHash;
+  const region = data.advRegion;
   const baseScriptUrl = 'https://tags.creativecdn.com/' + makeString(taggingHash) + '.js';
 
-  (function (dn, t) {
+  (function (dn, t, r) {
     setInWindow(dn, [], false);
     if (rtbhEvents.filter(function (e) { return e.eventType === 'init'; }).length) {
       return;
     }
-    rtbhEventsPush({ eventType: 'init', value: t });
-  })('rtbhEvents', taggingHash);
+    rtbhEventsPush({ eventType: 'init', value: t, dc: r });
+  })('rtbhEvents', taggingHash, region);
 
   const onSuccess = () => {
     data.gtmOnSuccess();
