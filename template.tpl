@@ -94,7 +94,7 @@ ___TEMPLATE_PARAMETERS___
   },
   {
     "type": "SELECT",
-    "name": "Region",
+    "name": "advRegion",
     "displayName": "Region",
     "selectItems": [
       {
