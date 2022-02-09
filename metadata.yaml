@@ -2,5 +2,5 @@ homepage: "https://www.rtbhouse,com",
 documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md",
 
 versions:
-  - sha: 0500d3a8c1206299475878e36195b89a12b2add4
+  - sha: 68f27c3fc52811c7d23f44f6fae2ac00682854d0
     changeNotes: Initial version.
