@@ -1,5 +1,5 @@
-homepage: "https://www.rtbhouse,com",
-documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md",
+homepage: "https://www.rtbhouse.com"
+documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md"
 
 versions:
   - sha: 68f27c3fc52811c7d23f44f6fae2ac00682854d0
