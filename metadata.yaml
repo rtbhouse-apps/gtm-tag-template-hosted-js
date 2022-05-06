@@ -2,5 +2,8 @@ homepage: "https://www.rtbhouse.com"
 documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md"
 
 versions:
+  - sha: 2ba522a6fa9c31cdafaa287da36d87db90cbf7ae
+    changeNotes: remove comma / fix homepage url
+
   - sha: 68f27c3fc52811c7d23f44f6fae2ac00682854d0
     changeNotes: Initial version.
