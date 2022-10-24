@@ -276,7 +276,7 @@ ___TEMPLATE_PARAMETERS___
             "macrosInSelect": true,
             "selectItems": [],
             "simpleValueType": true,
-            "help": "Select variable that contains string with comma separated products IDs or array with products IDs. Example: \u0027123,456,789\u0027 or [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027].",
+            "help": "Select variable that contains array with products IDs. Example: [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027].",
             "enablingConditions": [
               {
                 "paramName": "tagListing",
@@ -341,7 +341,7 @@ ___TEMPLATE_PARAMETERS___
                 "type": "EQUALS"
               }
             ],
-            "help": "Select variable that contains string with comma separated IDs of products or array with products IDs that are currently in the shopping cart. Example: \u0027123,456,789\u0027 or [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027]."
+            "help": "Select variable that contains array with products IDs that are currently in the shopping cart. Example: [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027]."
           }
         ],
         "help": "This tag should be added to the basket page."
@@ -432,7 +432,7 @@ ___TEMPLATE_PARAMETERS___
                 "type": "NON_EMPTY"
               }
             ],
-            "help": "Select variable that contains string with comma separated IDs of products or array with products IDs that are currently in the shopping cart. Example: \u0027123,456,789\u0027 or [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027]."
+            "help": "Select variable that contains array with products IDs that are currently in the shopping cart. Example: [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027]."
           },
           {
             "type": "LABEL",
@@ -1043,7 +1043,7 @@ ___TEMPLATE_PARAMETERS___
                 "type": "EQUALS"
               }
             ],
-            "help": "(Optional) Select variable that contains string with comma separated IDs of products or array with products IDs that are currently in the shopping cart. Example: \u0027123,456,789\u0027 or [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027]."
+            "help": "(Optional) Select variable that contains array with products IDs that are currently in the shopping cart. Example: [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027]."
           },
           {
             "type": "CHECKBOX",
