@@ -2,6 +2,9 @@ homepage: "https://www.rtbhouse.com"
 documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md"
 
 versions:
+  - sha: e0affc0956f628bf08d4227a7bd5f00106b748c7
+    changeNotes: adjusting offerIds context help descriptions
+
   - sha: 2ba522a6fa9c31cdafaa287da36d87db90cbf7ae
     changeNotes: remove comma / fix homepage url
 
