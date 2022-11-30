@@ -2,6 +2,9 @@ homepage: "https://www.rtbhouse.com"
 documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md"
 
 versions:
+  - sha: b10088c2f9eb9e3f256b34277db03846d8444b64
+    changeNotes: adding gtm onSuccess/onFailure callbacks for Event tags
+
   - sha: e0affc0956f628bf08d4227a7bd5f00106b748c7
     changeNotes: adjusting offerIds context help descriptions
 
