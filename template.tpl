@@ -1287,14 +1287,6 @@ const rtbhEventsPush = createQueue('rtbhEvents');
 
 const templateTagType = makeString(data.tagType);
 
-const onSuccess = () => {
-  data.gtmOnSuccess();
-};
-
-const onFailure = () => {
-  data.gtmOnFailure();
-};
-
 if (templateTagType === 'BASE_TAG') {
   
   const taggingHash = data.advTaggingHash;
@@ -1309,197 +1301,202 @@ if (templateTagType === 'BASE_TAG') {
     rtbhEventsPush({ eventType: 'init', value: t, dc: r });
   })('rtbhEvents', taggingHash, region);
 
-  injectScript(baseScriptUrl, onSuccess, onFailure, baseScriptUrl);
+  const onSuccess = () => {
+    data.gtmOnSuccess();
+  };
+
+  const onFail = () => {
+    data.gtmOnFailure();
+  };
+
+  injectScript(baseScriptUrl, onSuccess, onFail, baseScriptUrl);
+
 }
 
 if (templateTagType === 'EVENT_TAG') {
 
   const tagsRaw = [];
   for (const key in data) {
-    if (key.indexOf('tag') !== -1 && key !== 'tagType' && data[key]) {
+    if (key.indexOf('tag') !== -1 && data[key]) {
       tagsRaw.push(key);
     }
   }
 
-  if(tagsRaw.lenght > 0) {
-    tagsRaw.forEach((tag) => {
+  tagsRaw.forEach((tag) => {
 
-      const code = {};
+    const code = {};
 
-      switch (tag) {
+    switch (tag) {
 
-        case 'tagPlacebo':
-          code.eventType = 'placebo';
+      case 'tagPlacebo':
+        code.eventType = 'placebo';
 
-          break;
+        break;
 
-        case 'tagHome':
-          code.eventType = 'home';
+      case 'tagHome':
+        code.eventType = 'home';
 
-          break;
+        break;
 
-        case 'tagOffer':
-          code.eventType = 'offer';
-          code.offerId = data.offerOfferId;
+      case 'tagOffer':
+        code.eventType = 'offer';
+        code.offerId = data.offerOfferId;
 
-          break;
+        break;
 
-        case 'tagBasketStatus':
-          code.eventType = 'basketstatus';
-          code.offerIds = data.basketStatusOfferIds;
+      case 'tagBasketStatus':
+        code.eventType = 'basketstatus';
+        code.offerIds = data.basketStatusOfferIds;
 
-          break;
+        break;
 
-        case 'tagBasketAdd':
-          code.eventType = 'basketadd';
-          code.offerId = data.basketAddOfferId;
+      case 'tagBasketAdd':
+        code.eventType = 'basketadd';
+        code.offerId = data.basketAddOfferId;
 
-          break;
+        break;
 
-        case 'tagBasket':
-          code.eventType = 'basket';
+      case 'tagBasket':
+        code.eventType = 'basket';
 
-          break;
+        break;
 
-        case 'tagListing':
-          code.eventType = 'listing';
-          code.offerIds = data.listingOfferIds;
+      case 'tagListing':
+        code.eventType = 'listing';
+        code.offerIds = data.listingOfferIds;
 
-          break;
+        break;
 
-        case 'tagStartOrder':
-          code.eventType = 'startorder';
+      case 'tagStartOrder':
+        code.eventType = 'startorder';
 
-          break;
+        break;
 
-        case 'tagCustom':
-          const customTagsTable = data.customTagsTable;
-          customTagsTable.forEach((customTag) => {
-            const customCode = {};
-            customCode.eventType = 'custom';
-            customCode.name = customTag.customTagName;
-            customCode.value = customTag.customTagValue;
-            rtbhEventsPush(customCode);
-          });
+      case 'tagCustom':
+        const customTagsTable = data.customTagsTable;
+        customTagsTable.forEach((customTag) => {
+          const customCode = {};
+          customCode.eventType = 'custom';
+          customCode.name = customTag.customTagName;
+          customCode.value = customTag.customTagValue;
+          rtbhEventsPush(customCode);
+        });
 
-          break;
+        break;
 
-        case 'tagOptout':
-          code.eventType = 'optout';
+      case 'tagOptout':
+        code.eventType = 'optout';
 
-          break;
+        break;
 
-        case 'tagCategory':
-          code.eventType = 'category';
-          code.categoryId = data.category;
+      case 'tagCategory':
+        code.eventType = 'category';
+        code.categoryId = data.category;
 
-          break;
+        break;
 
-        case 'tagOrder':
-          code.eventType = 'conversion';
-          code.conversionClass = 'order';
-          code.conversionSubClass = data.orderTagSubclassCheck ? data.orderTagSubClass : 'purchase';
-          code.conversionId = data.orderId;
-          code.conversionValue = data.orderValue;
-          code.offerIds = data.orderOfferIds;
+      case 'tagOrder':
+        code.eventType = 'conversion';
+        code.conversionClass = 'order';
+        code.conversionSubClass = data.orderTagSubclassCheck ? data.orderTagSubClass : 'purchase';
+        code.conversionId = data.orderId;
+        code.conversionValue = data.orderValue;
+        code.offerIds = data.orderOfferIds;
+        
+        //Optional params
+        if (data.orderIsAttributedCheck) {
+          code.isAttributed = data.orderIsAttributed;
+        }
 
-          //Optional params
-          if (data.orderIsAttributedCheck) {
-            code.isAttributed = data.orderIsAttributed;
-          }
+        if (data.orderCurrencyCheck) {
+          code.currency = data.orderCurrency;
+        }
 
-          if (data.orderCurrencyCheck) {
-            code.currency = data.orderCurrency;
-          }
+        break;
+        
+      case 'tagConversion':
+        code.eventType = 'conversion';
+        code.conversionClass = data.conversionClass;
+        code.conversionSubClass = data[data.conversionClass + 'SubClass'];
+        
+        //Optional params
+        if (data.conversionIdCheck) {
+          code.conversionId = data.conversionId;
+        }        
+        if (data.conversionValueCheck) {
+          code.conversionValue = data.conversionValue;
+        }        
+        if (data.conversionOfferIdsCheck) {
+          code.offerIds = data.conversionOfferIds;
+        }        
+        if (data.conversionIsAttributedCheck) {
+          code.isAttributed = data.conversionIsAttributed;
+        }
+        if (data.conversionCurrencyCheck) {
+          code.currency = data.conversionCurrency;
+        }
 
-          break;
+        break;
 
-        case 'tagConversion':
-          code.eventType = 'conversion';
-          code.conversionClass = data.conversionClass;
-          code.conversionSubClass = data[data.conversionClass + 'SubClass'];
+      case 'tagUid':
+        code.eventType = 'uid';
+        code.id = data.uid;
 
-          //Optional params
-          if (data.conversionIdCheck) {
-            code.conversionId = data.conversionId;
-          }
-          if (data.conversionValueCheck) {
-            code.conversionValue = data.conversionValue;
-          }
-          if (data.conversionOfferIdsCheck) {
-            code.offerIds = data.conversionOfferIds;
-          }
-          if (data.conversionIsAttributedCheck) {
-            code.isAttributed = data.conversionIsAttributed;
-          }
-          if (data.conversionCurrencyCheck) {
-            code.currency = data.conversionCurrency;
-          }
+        break;
 
-          break;
+      case 'tagSid':
+        code.eventType = 'sid';
+        code.id = data.sid;
 
-        case 'tagUid':
-          code.eventType = 'uid';
-          code.id = data.uid;
+        break;
 
-          break;
+      case 'tagAid':
+        code.eventType = 'aid';
+        code.id = data.aid;
 
-        case 'tagSid':
-          code.eventType = 'sid';
-          code.id = data.sid;
+        break;
 
-          break;
+      case 'tagSales':
+        code.eventType = 'sales';
 
-        case 'tagAid':
-          code.eventType = 'aid';
-          code.id = data.aid;
+        break;
 
-          break;
+      case 'tagNewOffers':
+        code.eventType = 'newoffers';
 
-        case 'tagSales':
-          code.eventType = 'sales';
+        break;
 
-          break;
+      case 'tagOfflineCheck':
+        code.eventType = 'offlinecheck';
 
-        case 'tagNewOffers':
-          code.eventType = 'newoffers';
+        break;
 
-          break;
+      case 'tagSize':
+        code.eventType = 'size';
+        code.size = data.productSize;
 
-        case 'tagOfflineCheck':
-          code.eventType = 'offlinecheck';
+        break;
 
-          break;
+      case 'tagWishlist':
+        code.eventType = 'wishlist';
+        code.offerId = data.wishlistOfferId;
 
-        case 'tagSize':
-          code.eventType = 'size';
-          code.size = data.productSize;
+        break;
 
-          break;
+      case 'tagConsent':
+        code.eventType = 'consent';
+        code.consentType = data.consentType;
 
-        case 'tagWishlist':
-          code.eventType = 'wishlist';
-          code.offerId = data.wishlistOfferId;
+        break;
 
-          break;
+    }
 
-        case 'tagConsent':
-          code.eventType = 'consent';
-          code.consentType = data.consentType;
+    if (code.eventType) {
+      rtbhEventsPush(code);
+    }
 
-          break;
+  });
 
-      }
-
-      if (code.eventType) {
-        rtbhEventsPush(code);
-      }
-    });
-
-    onSuccess();
-  } else {
-    onFailure();
-  }
 }
 
 
