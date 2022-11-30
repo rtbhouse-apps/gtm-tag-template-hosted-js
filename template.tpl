@@ -1287,6 +1287,14 @@ const rtbhEventsPush = createQueue('rtbhEvents');
 
 const templateTagType = makeString(data.tagType);
 
+const onSuccess = () => {
+  data.gtmOnSuccess();
+};
+
+const onFailure = () => {
+  data.gtmOnFailure();
+};
+
 if (templateTagType === 'BASE_TAG') {
   
   const taggingHash = data.advTaggingHash;
@@ -1301,16 +1309,8 @@ if (templateTagType === 'BASE_TAG') {
     rtbhEventsPush({ eventType: 'init', value: t, dc: r });
   })('rtbhEvents', taggingHash, region);
 
-  const onSuccess = () => {
-    data.gtmOnSuccess();
-  };
 
-  const onFail = () => {
-    data.gtmOnFailure();
-  };
-
-  injectScript(baseScriptUrl, onSuccess, onFail, baseScriptUrl);
-
+  injectScript(baseScriptUrl, onSuccess, onFailure, baseScriptUrl);
 }
 
 if (templateTagType === 'EVENT_TAG') {
@@ -1322,6 +1322,10 @@ if (templateTagType === 'EVENT_TAG') {
     }
   }
 
+  if (!tagsRaw.length) {
+    onFailure();
+  }
+  
   tagsRaw.forEach((tag) => {
 
     const code = {};
@@ -1496,7 +1500,8 @@ if (templateTagType === 'EVENT_TAG') {
     }
 
   });
-
+  
+  onSuccess();
 }
 
 
