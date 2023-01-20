@@ -598,7 +598,7 @@ ___TEMPLATE_PARAMETERS___
       {
         "type": "CHECKBOX",
         "name": "tagConversion",
-        "checkboxText": "Conversion code (other)",
+        "checkboxText": "Conversion code",
         "simpleValueType": true,
         "subParams": [
           {
