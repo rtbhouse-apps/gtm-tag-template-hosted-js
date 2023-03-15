@@ -122,9 +122,9 @@ ___TEMPLATE_PARAMETERS___
     "help": "Please select your region. If you are not sure, contact your RTB House Customer Service Manager.",
     "enablingConditions": [
       {
-        "paramName": "advTaggingHash",
-        "paramValue": "",
-        "type": "PRESENT"
+        "paramName": "tagType",
+        "paramValue": "BASE_TAG",
+        "type": "EQUALS"
       }
     ]
   },
