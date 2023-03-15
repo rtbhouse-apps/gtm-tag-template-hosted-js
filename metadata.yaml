@@ -2,6 +2,9 @@ homepage: "https://www.rtbhouse.com"
 documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md"
 
 versions:
+  - sha: 0760e26f65e3c54acf771120aec0157f3af0d47b
+    changeNotes: changing "Region" to always be visible when "Base tag" is selected
+
   - sha: 01e1ae49a43d01c57962702a3244e7fe99401ec6
     changeNotes: changing display name for "tagConversion"
 
