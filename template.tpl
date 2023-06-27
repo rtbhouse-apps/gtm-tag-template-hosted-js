@@ -15,7 +15,7 @@ ___INFO___
     "text": "If you have any questions, contact your RTB House Customer Service Manager."
   },
   "displayName": "RTB House Hosted Tag",
-  "description": "RTB House Hosted Tag",
+  "description": "RTB House Hosted Tag that sends users\u0027 data from your website to RTB House.",
   "categories": [
     "REMARKETING",
     "PERSONALIZATION",
