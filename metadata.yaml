@@ -2,6 +2,9 @@ homepage: "https://www.rtbhouse.com"
 documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md"
 
 versions:
+  - sha: f95a8a1a4c1a880b8f78f3643445d88273298a33
+    changeNotes: update description
+
   - sha: 0760e26f65e3c54acf771120aec0157f3af0d47b
     changeNotes: changing "Region" to always be visible when "Base tag" is selected
 
