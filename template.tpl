@@ -1413,7 +1413,7 @@ if (templateTagType === 'EVENT_TAG') {
         }
 
         if (data.orderCurrencyCheck) {
-          code.currency = data.orderCurrency;
+          code.conversionCurrency = data.orderCurrency;
         }
 
         break;
@@ -1437,7 +1437,7 @@ if (templateTagType === 'EVENT_TAG') {
           code.isAttributed = data.conversionIsAttributed;
         }
         if (data.conversionCurrencyCheck) {
-          code.currency = data.conversionCurrency;
+          code.conversionCurrency = data.conversionCurrency;
         }
 
         break;
