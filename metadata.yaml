@@ -2,6 +2,9 @@ homepage: "https://www.rtbhouse.com"
 documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md"
 
 versions:
+  - sha: d355d87d6a22ab1e6e18a633890c519f98bb5e5c
+    changeNotes: Update conversion classes type list
+    
   - sha: 45a70dc2e14d8c84e8b3563c6cd63b2f20ae2c3d
     changeNotes: update conversion currency
     
