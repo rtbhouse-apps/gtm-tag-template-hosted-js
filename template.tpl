@@ -676,8 +676,8 @@ ___TEMPLATE_PARAMETERS___
                     "displayValue": "chat"
                   },
                   {
-                    "value": "salenew",
-                    "displayValue": "salenew"
+                    "value": "postad",
+                    "displayValue": "postad"
                   },
                   {
                     "value": "form",
@@ -730,6 +730,10 @@ ___TEMPLATE_PARAMETERS___
                   {
                     "value": "finddealer",
                     "displayValue": "finddealer"
+                  },
+                  {
+                    "value": "clickthrough",
+                    "displayValue": "clickthrough"
                   },
                   {
                     "value": "custom1",
@@ -836,6 +840,10 @@ ___TEMPLATE_PARAMETERS___
                   {
                     "value": "buypack",
                     "displayValue": "buypack"
+                  },
+                  {
+                    "value": "unlockpremium",
+                    "displayValue": "unlockpremium"
                   }
                 ],
                 "simpleValueType": true,
@@ -902,6 +910,10 @@ ___TEMPLATE_PARAMETERS___
                   {
                     "value": "levelb",
                     "displayValue": "levelb"
+                  },
+                  {
+                    "value": "rewardedad",
+                    "displayValue": "rewardedad"
                   }
                 ],
                 "simpleValueType": true,
