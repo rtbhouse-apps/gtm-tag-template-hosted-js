@@ -116,6 +116,10 @@ ___TEMPLATE_PARAMETERS___
       {
         "value": "asia",
         "displayValue": "Asia"
+      },
+      {
+        "value": "custom",
+        "displayValue": "Custom Region"
       }
     ],
     "simpleValueType": true,
@@ -127,6 +131,22 @@ ___TEMPLATE_PARAMETERS___
         "type": "EQUALS"
       }
     ]
+  },
+  {
+    "type": "SELECT",
+    "name": "advCustomRegion",
+    "displayName": "Custom Region",
+    "macrosInSelect": true,
+    "selectItems": [],
+    "simpleValueType": true,
+    "enablingConditions": [
+      {
+        "paramName": "advRegion",
+        "paramValue": "custom",
+        "type": "EQUALS"
+      }
+    ],
+    "help": "In this field, you should insert the region you have received from your RTB House Customer Service Manager. It should be one of the following regions (case insensitive): EMEA, Americas, Asia. If an unknown region is inserted, the region will default to EMEA."
   },
   {
     "type": "GROUP",
@@ -1307,10 +1327,30 @@ const onFailure = () => {
   data.gtmOnFailure();
 };
 
+const getDataCenter = () => {
+  if (data.advRegion !== 'custom') {
+    return data.advRegion;
+  }
+  
+  const customRegion = makeString(data.advCustomRegion).toLowerCase();
+  const regionMap = {
+    emea: 'ams',
+    americas: 'us',
+    asia: 'asia',
+  };
+  
+  const dataCenter = regionMap[customRegion];
+  if (!dataCenter) {
+    return 'ams';
+  }
+  
+  return dataCenter;
+};
+
 if (templateTagType === 'BASE_TAG') {
   
   const taggingHash = data.advTaggingHash;
-  const region = data.advRegion;
+  const dataCenter = getDataCenter();
   const baseScriptUrl = 'https://tags.creativecdn.com/' + makeString(taggingHash) + '.js';
 
   (function (dn, t, r) {
@@ -1319,7 +1359,7 @@ if (templateTagType === 'BASE_TAG') {
       return;
     }
     rtbhEventsPush({ eventType: 'init', value: t, dc: r });
-  })('rtbhEvents', taggingHash, region);
+  })('rtbhEvents', taggingHash, dataCenter);
 
 
   injectScript(baseScriptUrl, onSuccess, onFailure, baseScriptUrl);
