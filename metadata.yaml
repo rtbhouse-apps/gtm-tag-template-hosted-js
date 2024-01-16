@@ -2,6 +2,9 @@ homepage: "https://www.rtbhouse.com"
 documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md"
 
 versions:
+  - sha: ba80130f745fb690c15e67d0ad39e87ffd69dccf
+    changeNotes: Add select for custom region
+
   - sha: d355d87d6a22ab1e6e18a633890c519f98bb5e5c
     changeNotes: Update conversion classes type list
     
