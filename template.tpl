@@ -1,4 +1,4 @@
-﻿___TERMS_OF_SERVICE___
+﻿﻿___TERMS_OF_SERVICE___
 
 By creating or modifying this file you agree to Google Tag Manager's Community
 Template Gallery Developer Terms of Service available at
@@ -49,7 +49,7 @@ ___TEMPLATE_PARAMETERS___
     "selectItems": [
       {
         "value": "BASE_TAG",
-        "displayValue": "Base tag"
+        "displayValue": "Main tagging code"
       },
       {
         "value": "EVENT_TAG",
@@ -57,7 +57,7 @@ ___TEMPLATE_PARAMETERS___
       }
     ],
     "simpleValueType": true,
-    "help": "Base tag should be executed on all page view events. It is required for Event tags to work. Event tags should be executed for individual events."
+    "help": "Main tagging code should always be executed before events tag (on all page view events). Use advanced setting - tag firing priority."
   },
   {
     "help": {
@@ -152,1098 +152,1127 @@ ___TEMPLATE_PARAMETERS___
     "type": "GROUP",
     "name": "tagGroup",
     "displayName": "Select tag type(s)",
-    "groupStyle": "NO_ZIPPY",
+    "groupStyle": "ZIPPY_OPEN",
     "subParams": [
       {
-        "type": "CHECKBOX",
-        "name": "tagHome",
-        "checkboxText": "Home page code",
-        "simpleValueType": true,
-        "help": "This tag should be added to the home page of your website."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagCategory",
-        "checkboxText": "Category page code",
-        "simpleValueType": true,
+        "type": "GROUP",
+        "name": "Tag Identifiers",
+        "displayName": "Tag Identifiers",
+        "groupStyle": "NO_ZIPPY",
         "subParams": [
-          {
-            "type": "SELECT",
-            "name": "category",
-            "displayName": "Category name or ID:",
-            "macrosInSelect": true,
-            "selectItems": [],
-            "simpleValueType": true,
-            "help": "Select variable that contains category name or ID.",
-            "enablingConditions": [
-              {
-                "paramName": "tagCategory",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ]
-          }
-        ],
-        "help": "This tag should be added to pages which display grouped product categories."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagSales",
-        "checkboxText": "Sale or promo page code",
-        "simpleValueType": true,
-        "help": "This code should be added to sales or promotions page"
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagNewOffers",
-        "checkboxText": "New products page code",
-        "simpleValueType": true,
-        "help": "The code should be added to pages dedicated to displaying new products."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagOffer",
-        "checkboxText": "Product page code",
-        "simpleValueType": true,
-        "subParams": [
-          {
-            "type": "SELECT",
-            "name": "offerOfferId",
-            "displayName": "Product identifier:",
-            "macrosInSelect": true,
-            "selectItems": [],
-            "simpleValueType": true,
-            "enablingConditions": [
-              {
-                "paramName": "tagOffer",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "Select variable that contains product ID."
-          }
-        ],
-        "help": "This tag should be added to the pages of individual products."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagWishlist",
-        "checkboxText": "Wishlist or favourite code",
-        "simpleValueType": true,
-        "subParams": [
-          {
-            "type": "SELECT",
-            "name": "wishlistOfferId",
-            "displayName": "Product identifier:",
-            "macrosInSelect": true,
-            "selectItems": [],
-            "simpleValueType": true,
-            "enablingConditions": [
-              {
-                "paramName": "tagWishlist",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "Select variable that contains product ID."
-          }
-        ],
-        "help": "This tag should be triggered when a user adds a product to their wishlist or favourites a product.",
-        "valueValidators": []
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagSize",
-        "checkboxText": "Product size selection code",
-        "simpleValueType": true,
-        "subParams": [
-          {
-            "type": "SELECT",
-            "name": "productSize",
-            "displayName": "Product size:",
-            "macrosInSelect": true,
-            "selectItems": [],
-            "simpleValueType": true,
-            "enablingConditions": [
-              {
-                "paramName": "tagSize",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "Select variable that contains string that describes product size or (e.g., S, XXL, medium, 38, 44)."
-          }
-        ],
-        "help": "This code should be executed when a user selects a product size or colour. The code should not be triggered with a default value. It should be triggered each time a user selects or changes the product size or colour."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagOfflineCheck",
-        "checkboxText": "Offline store checking code",
-        "simpleValueType": true,
-        "help": "This code should be executed every time a user checks product availability in an offline store."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagListing",
-        "checkboxText": "Search result page code",
-        "simpleValueType": true,
-        "subParams": [
-          {
-            "type": "SELECT",
-            "name": "listingOfferIds",
-            "displayName": "Product identifiers:",
-            "macrosInSelect": true,
-            "selectItems": [],
-            "simpleValueType": true,
-            "help": "Select variable that contains array with products IDs. Example: [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027].",
-            "enablingConditions": [
-              {
-                "paramName": "tagListing",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ]
-          }
-        ],
-        "help": "This tag should be added to the internal site search results pages."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagBasketAdd",
-        "checkboxText": "Shopping cart – product add code",
-        "simpleValueType": true,
-        "subParams": [
-          {
-            "type": "SELECT",
-            "name": "basketAddOfferId",
-            "displayName": "Product identifier:",
-            "macrosInSelect": true,
-            "selectItems": [],
-            "simpleValueType": true,
-            "help": "Select variable that contains a product ID as a string.",
-            "enablingConditions": [
-              {
-                "paramName": "tagBasketAdd",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ]
-          }
-        ],
-        "help": "This tag should be executed every time a user adds a product to the basket."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagBasket",
-        "checkboxText": "Shopping cart - not empty",
-        "simpleValueType": true,
-        "subParams": [],
-        "help": "This tag should only be used if it’s not possible to implement Shopping cart – product add or Shopping cart – product status code.\n\nThis tag should be executed only when the cart is not empty."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagBasketStatus",
-        "checkboxText": "Shopping cart – status code",
-        "simpleValueType": true,
-        "subParams": [
-          {
-            "type": "SELECT",
-            "name": "basketStatusOfferIds",
-            "displayName": "Product identifiers:",
-            "macrosInSelect": true,
-            "selectItems": [],
-            "simpleValueType": true,
-            "enablingConditions": [
-              {
-                "paramName": "tagBasketStatus",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "Select variable that contains array with products IDs that are currently in the shopping cart. Example: [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027]."
-          }
-        ],
-        "help": "This tag should be added to the basket page."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagStartOrder",
-        "checkboxText": "Order process start code",
-        "simpleValueType": true,
-        "help": "This code should be added to the page which begins order processing, i.e. the checkout page displayed after creating and filling the shopping cart. This is typically the contact details form or any other page displayed after clicking the \"Go to checkout\" or similar button."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagOrder",
-        "checkboxText": "Order confirmation code",
-        "simpleValueType": true,
-        "subParams": [
-          {
-            "type": "LABEL",
-            "name": "orderRequiredParams",
-            "displayName": "Required parameters",
-            "enablingConditions": [
-              {
-                "paramName": "tagOrder",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ]
-          },
-          {
-            "type": "SELECT",
-            "name": "orderId",
-            "displayName": "Conversion identifier:",
-            "macrosInSelect": true,
-            "selectItems": [],
-            "simpleValueType": true,
-            "enablingConditions": [
-              {
-                "paramName": "tagOrder",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "valueValidators": [
-              {
-                "type": "NON_EMPTY"
-              }
-            ],
-            "help": "Select variable that contains the internal (shop) order identifier."
-          },
-          {
-            "type": "SELECT",
-            "name": "orderValue",
-            "displayName": "Conversion value:",
-            "macrosInSelect": true,
-            "selectItems": [],
-            "simpleValueType": true,
-            "enablingConditions": [
-              {
-                "paramName": "tagOrder",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "valueValidators": [
-              {
-                "type": "NON_EMPTY"
-              }
-            ],
-            "help": "Select variable that contains value of the order. This value should only be formatted with the decimal point (dot or comma), without the thousands separator."
-          },
-          {
-            "type": "SELECT",
-            "name": "orderOfferIds",
-            "displayName": "Product identifiers:",
-            "macrosInSelect": true,
-            "selectItems": [],
-            "simpleValueType": true,
-            "enablingConditions": [
-              {
-                "paramName": "tagOrder",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "valueValidators": [
-              {
-                "type": "NON_EMPTY"
-              }
-            ],
-            "help": "Select variable that contains array with products IDs that are currently in the shopping cart. Example: [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027]."
-          },
-          {
-            "type": "LABEL",
-            "name": "orderOptionalParams",
-            "displayName": "Optional parameters",
-            "enablingConditions": [
-              {
-                "paramName": "tagOrder",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ]
-          },
           {
             "type": "CHECKBOX",
-            "name": "orderIsAttributedCheck",
-            "checkboxText": "Is attributed",
+            "name": "tagUid",
+            "checkboxText": "User ID (cross-device)",
             "simpleValueType": true,
+            "help": "The code should be added when you want to pass a unique and anonymized ID of the user - for example for cross-device targeting possibilities.",
             "subParams": [
               {
                 "type": "SELECT",
-                "name": "orderIsAttributed",
-                "displayName": "Select variable:",
+                "name": "uid",
+                "displayName": "Variable containing the current user identifier:",
                 "macrosInSelect": true,
                 "selectItems": [],
                 "simpleValueType": true,
-                "defaultValue": "",
+                "help": "Select variable that contains string with an anonymized user identifier.",
                 "enablingConditions": [
                   {
-                    "paramName": "orderIsAttributedCheck",
+                    "paramName": "tagUid",
                     "paramValue": true,
                     "type": "EQUALS"
                   }
-                ],
-                "valueValidators": []
+                ]
               }
-            ],
-            "enablingConditions": [
-              {
-                "paramName": "tagOrder",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "(Optional) Select variable that returns true if conversion is attributed to RTB House and false if not."
+            ]
           },
           {
             "type": "CHECKBOX",
-            "name": "orderCurrencyCheck",
-            "checkboxText": "Currency code",
+            "name": "tagAid",
+            "checkboxText": "Anonymous user ID",
+            "simpleValueType": true,
+            "help": "The code should be added when you want to pass a unique ID of an anonymous user.",
+            "subParams": [
+              {
+                "type": "SELECT",
+                "name": "aid",
+                "displayName": "Variable containing the current anonymous user identifier:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains string with an anonymized ID of the user.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagAid",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "tagSid",
+            "checkboxText": "Session ID",
             "simpleValueType": true,
             "subParams": [
               {
                 "type": "SELECT",
-                "name": "orderCurrency",
-                "displayName": "Select variable:",
+                "name": "sid",
+                "displayName": "Variable containing the current user session identifier:",
                 "macrosInSelect": true,
                 "selectItems": [],
                 "simpleValueType": true,
+                "help": "Select variable that contains string with a session ID of the user.",
                 "enablingConditions": [
                   {
-                    "paramName": "orderCurrencyCheck",
+                    "paramName": "tagSid",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ],
+            "help": "The code should be added when you want to pass an unique session ID of the user."
+          }
+        ]
+      },
+      {
+        "type": "GROUP",
+        "name": "Obligatory Tags",
+        "displayName": "Obligatory Tags",
+        "subParams": [
+          {
+            "type": "CHECKBOX",
+            "name": "tagHome",
+            "checkboxText": "Home page code",
+            "simpleValueType": true,
+            "help": "This tag should be added to the home page of your website."
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "tagCategory",
+            "checkboxText": "Category page code",
+            "simpleValueType": true,
+            "help": "This tag should be added to pages which display grouped product categories.",
+            "subParams": [
+              {
+                "type": "SELECT",
+                "name": "category",
+                "displayName": "Category name or ID:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains category name or ID.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagCategory",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "tagOffer",
+            "checkboxText": "Product (offer) page code",
+            "simpleValueType": true,
+            "help": "This tag should be added to the pages of individual products.",
+            "subParams": [
+              {
+                "type": "SELECT",
+                "name": "offerOfferId",
+                "displayName": "Product identifier:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains product ID.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagOffer",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "tagListing",
+            "checkboxText": "Search result page code",
+            "simpleValueType": true,
+            "help": "This tag should be added to the internal site search results pages.",
+            "subParams": [
+              {
+                "type": "SELECT",
+                "name": "listingOfferIds",
+                "displayName": "Product identifiers:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains array with products IDs. Example: [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027].",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagListing",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "tagBasketAdd",
+            "checkboxText": "Shopping cart - add-to-cart code",
+            "simpleValueType": true,
+            "help": "This tag should be executed every time a user adds a product to the basket.",
+            "subParams": [
+              {
+                "type": "SELECT",
+                "name": "basketAddOfferId",
+                "displayName": "Product identifier:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains a product ID as a string.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagBasketAdd",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "tagBasketStatus",
+            "checkboxText": "Shopping cart – status code",
+            "simpleValueType": true,
+            "help": "This tag should be added to the basket page.",
+            "subParams": [
+              {
+                "type": "SELECT",
+                "name": "basketStatusOfferIds",
+                "displayName": "Product identifiers:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains array with products IDs that are currently in the shopping cart. Example: [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027].",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagBasketStatus",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "tagStartOrder",
+            "checkboxText": "Order process start code",
+            "simpleValueType": true,
+            "help": "This code should be added to the page which begins order processing, i.e. the checkout page displayed after creating and filling the shopping cart. This is typically the contact details form or any other page displayed after clicking the \"Go to checkout\" or similar button."
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "tagOrder",
+            "checkboxText": "Conversion confirmation -  Order code",
+            "simpleValueType": true,
+            "help": "This tag should be triggered on the order confirmation page for all orders placed on the website, regardless of traffic source.",
+            "subParams": [
+              {
+                "type": "LABEL",
+                "name": "orderRequiredParams",
+                "displayName": "Required parameters",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagOrder",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              },
+              {
+                "type": "SELECT",
+                "name": "orderId",
+                "displayName": "Conversion identifier:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains the internal (shop) order identifier.",
+                "valueValidators": [
+                  {
+                    "type": "NON_EMPTY"
+                  }
+                ],
+                "enablingConditions": [
+                  {
+                    "paramName": "tagOrder",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              },
+              {
+                "type": "SELECT",
+                "name": "orderValue",
+                "displayName": "Conversion value:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains value of the order. This value should only be formatted with the decimal point (dot or comma), without the thousands separator.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagOrder",
                     "paramValue": true,
                     "type": "EQUALS"
                   }
                 ],
                 "valueValidators": [
                   {
-                    "type": "REGEX",
-                    "args": [
-                      "[a-zA-Z]{3}"
+                    "type": "NON_EMPTY"
+                  }
+                ]
+              },
+              {
+                "type": "SELECT",
+                "name": "orderOfferIds",
+                "displayName": "Product identifiers:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains array with products IDs that are currently in the shopping cart. Example: [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027].",
+                "valueValidators": [
+                  {
+                    "type": "NON_EMPTY"
+                  }
+                ],
+                "enablingConditions": [
+                  {
+                    "paramName": "tagOrder",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              },
+              {
+                "type": "LABEL",
+                "name": "orderOptionalParams",
+                "displayName": "Optional parameters",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagOrder",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              },
+              {
+                "type": "CHECKBOX",
+                "name": "orderIsAttributedCheck",
+                "checkboxText": "Is attributed",
+                "simpleValueType": true,
+                "help": "(Optional) Select variable that returns true if conversion is attributed to RTB House and false if not.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagOrder",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ],
+                "subParams": [
+                  {
+                    "type": "SELECT",
+                    "name": "orderIsAttributed",
+                    "displayName": "Select variable:",
+                    "macrosInSelect": true,
+                    "selectItems": [],
+                    "simpleValueType": true,
+                    "enablingConditions": [
+                      {
+                        "paramName": "orderIsAttributedCheck",
+                        "paramValue": true,
+                        "type": "EQUALS"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "CHECKBOX",
+                "name": "orderCurrencyCheck",
+                "checkboxText": "Currency code",
+                "simpleValueType": true,
+                "help": "(Optional) Select variable that returns conversion currency formatted as 3 digit currency code, e.g. \"USD\".",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagOrder",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ],
+                "subParams": [
+                  {
+                    "type": "SELECT",
+                    "name": "orderCurrency",
+                    "displayName": "Select variable:",
+                    "macrosInSelect": true,
+                    "selectItems": [],
+                    "simpleValueType": true,
+                    "valueValidators": [
+                      {
+                        "type": "REGEX",
+                        "args": [
+                          "[a-zA-Z]{3}"
+                        ]
+                      }
+                    ],
+                    "enablingConditions": [
+                      {
+                        "paramName": "orderCurrencyCheck",
+                        "paramValue": true,
+                        "type": "EQUALS"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "CHECKBOX",
+                "name": "orderTagSubclassCheck",
+                "checkboxText": "Order subclass",
+                "simpleValueType": true,
+                "help": "(Optional) If requested, select the subclass sent by your RTB House representative. Default value is \"purchase\".",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagOrder",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ],
+                "subParams": [
+                  {
+                    "type": "SELECT",
+                    "name": "orderTagSubClass",
+                    "displayName": "Select subclass:",
+                    "macrosInSelect": false,
+                    "selectItems": [
+                      {
+                        "value": "purchase",
+                        "displayValue": "purchase"
+                      },
+                      {
+                        "value": "travelflight",
+                        "displayValue": "travelflight"
+                      },
+                      {
+                        "value": "travelhotel",
+                        "displayValue": "travelhotel"
+                      },
+                      {
+                        "value": "travelpackage",
+                        "displayValue": "travelpackage"
+                      },
+                      {
+                        "value": "salepromo",
+                        "displayValue": "salepromo"
+                      },
+                      {
+                        "value": "salenew",
+                        "displayValue": "salenew"
+                      },
+                      {
+                        "value": "salepremium",
+                        "displayValue": "salepremium"
+                      },
+                      {
+                        "value": "ncsale",
+                        "displayValue": "ncsale"
+                      },
+                      {
+                        "value": "ecsale",
+                        "displayValue": "ecsale"
+                      }
+                    ],
+                    "simpleValueType": true,
+                    "defaultValue": "purchase",
+                    "valueValidators": [
+                      {
+                        "type": "NON_EMPTY"
+                      }
+                    ],
+                    "enablingConditions": [
+                      {
+                        "paramName": "orderTagSubclassCheck",
+                        "paramValue": true,
+                        "type": "EQUALS"
+                      }
                     ]
                   }
                 ]
               }
-            ],
-            "enablingConditions": [
-              {
-                "paramName": "tagOrder",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "(Optional) Select variable that returns conversion currency formatted as 3 digit currency code, e.g. \"USD\"."
-          },
-          {
-            "type": "CHECKBOX",
-            "name": "orderTagSubclassCheck",
-            "checkboxText": "Order subclass",
-            "simpleValueType": true,
-            "subParams": [
-              {
-                "type": "SELECT",
-                "name": "orderTagSubClass",
-                "displayName": "Select subclass:",
-                "macrosInSelect": false,
-                "selectItems": [
-                  {
-                    "value": "purchase",
-                    "displayValue": "purchase"
-                  },
-                  {
-                    "value": "travelflight",
-                    "displayValue": "travelflight"
-                  },
-                  {
-                    "value": "travelhotel",
-                    "displayValue": "travelhotel"
-                  },
-                  {
-                    "value": "travelpackage",
-                    "displayValue": "travelpackage"
-                  },
-                  {
-                    "value": "salepromo",
-                    "displayValue": "salepromo"
-                  },
-                  {
-                    "value": "salenew",
-                    "displayValue": "salenew"
-                  },
-                  {
-                    "value": "salepremium",
-                    "displayValue": "salepremium"
-                  },
-                  {
-                    "value": "ncsale",
-                    "displayValue": "ncsale"
-                  },
-                  {
-                    "value": "ecsale",
-                    "displayValue": "ecsale"
-                  }
-                ],
-                "simpleValueType": true,
-                "enablingConditions": [
-                  {
-                    "paramName": "orderTagSubclassCheck",
-                    "paramValue": true,
-                    "type": "EQUALS"
-                  }
-                ],
-                "valueValidators": [
-                  {
-                    "type": "NON_EMPTY"
-                  }
-                ],
-                "defaultValue": "purchase"
-              }
-            ],
-            "enablingConditions": [
-              {
-                "paramName": "tagOrder",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "(Optional) If requested, select the subclass sent by your RTB House representative. Default value is \"purchase\"."
-          }
-        ],
-        "help": "This tag should be triggered on the order confirmation page for all orders placed on the website, regardless of traffic source."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagConversion",
-        "checkboxText": "Conversion code",
-        "simpleValueType": true,
-        "subParams": [
-          {
-            "type": "LABEL",
-            "name": "selectConversionClass",
-            "displayName": "Select conversion class",
-            "enablingConditions": [
-              {
-                "paramName": "tagConversion",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ]
-          },
-          {
-            "type": "SELECT",
-            "name": "conversionClass",
-            "displayName": "Conversion class:",
-            "macrosInSelect": false,
-            "selectItems": [
-              {
-                "value": "action",
-                "displayValue": "ACTION"
-              },
-              {
-                "value": "appaction",
-                "displayValue": "APP_ACTION"
-              },
-              {
-                "value": "appinstall",
-                "displayValue": "APP_INSTALL"
-              },
-              {
-                "value": "micropayment",
-                "displayValue": "MICROPAYMENT"
-              },
-              {
-                "value": "order",
-                "displayValue": "ORDER"
-              }
-            ],
-            "simpleValueType": true,
-            "enablingConditions": [
-              {
-                "paramName": "tagConversion",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "subParams": [
-              {
-                "type": "SELECT",
-                "name": "actionSubClass",
-                "displayName": "ACTION subclass:",
-                "macrosInSelect": false,
-                "selectItems": [
-                  {
-                    "value": "shownumber",
-                    "displayValue": "shownumber"
-                  },
-                  {
-                    "value": "call",
-                    "displayValue": "call"
-                  },
-                  {
-                    "value": "message",
-                    "displayValue": "message"
-                  },
-                  {
-                    "value": "text",
-                    "displayValue": "text"
-                  },
-                  {
-                    "value": "chat",
-                    "displayValue": "chat"
-                  },
-                  {
-                    "value": "postad",
-                    "displayValue": "postad"
-                  },
-                  {
-                    "value": "form",
-                    "displayValue": "form"
-                  },
-                  {
-                    "value": "newsletter",
-                    "displayValue": "newsletter"
-                  },
-                  {
-                    "value": "loyalty",
-                    "displayValue": "loyalty"
-                  },
-                  {
-                    "value": "account",
-                    "displayValue": "account"
-                  },
-                  {
-                    "value": "favourite",
-                    "displayValue": "favourite"
-                  },
-                  {
-                    "value": "propertyrent",
-                    "displayValue": "propertyrent"
-                  },
-                  {
-                    "value": "propertybuilder",
-                    "displayValue": "propertybuilder"
-                  },
-                  {
-                    "value": "propertyprivate",
-                    "displayValue": "propertyprivate"
-                  },
-                  {
-                    "value": "testdrive",
-                    "displayValue": "testdrive"
-                  },
-                  {
-                    "value": "viewoffer",
-                    "displayValue": "viewoffer"
-                  },
-                  {
-                    "value": "dwnldprclist",
-                    "displayValue": "dwnldprclist"
-                  },
-                  {
-                    "value": "dwnldprclista",
-                    "displayValue": "dwnldprclista"
-                  },
-                  {
-                    "value": "finddealer",
-                    "displayValue": "finddealer"
-                  },
-                  {
-                    "value": "clickthrough",
-                    "displayValue": "clickthrough"
-                  },
-                  {
-                    "value": "custom1",
-                    "displayValue": "custom1"
-                  },
-                  {
-                    "value": "custom2",
-                    "displayValue": "custom2"
-                  }
-                ],
-                "simpleValueType": true,
-                "enablingConditions": [
-                  {
-                    "paramName": "conversionClass",
-                    "paramValue": "action",
-                    "type": "EQUALS"
-                  }
-                ],
-                "valueValidators": [
-                  {
-                    "type": "NON_EMPTY"
-                  }
-                ]
-              },
-              {
-                "type": "SELECT",
-                "name": "orderSubClass",
-                "displayName": "ORDER subclass:",
-                "macrosInSelect": false,
-                "selectItems": [
-                  {
-                    "value": "purchase",
-                    "displayValue": "purchase"
-                  },
-                  {
-                    "value": "travelflight",
-                    "displayValue": "travelflight"
-                  },
-                  {
-                    "value": "travelhotel",
-                    "displayValue": "travelhotel"
-                  },
-                  {
-                    "value": "travelpackage",
-                    "displayValue": "travelpackage"
-                  },
-                  {
-                    "value": "salepromo",
-                    "displayValue": "salepromo"
-                  },
-                  {
-                    "value": "salenew",
-                    "displayValue": "salenew"
-                  },
-                  {
-                    "value": "salepremium",
-                    "displayValue": "salepremium"
-                  },
-                  {
-                    "value": "ncsale",
-                    "displayValue": "ncsale"
-                  },
-                  {
-                    "value": "ecsale",
-                    "displayValue": "ecsale"
-                  }
-                ],
-                "simpleValueType": true,
-                "enablingConditions": [
-                  {
-                    "paramName": "conversionClass",
-                    "paramValue": "order",
-                    "type": "EQUALS"
-                  }
-                ],
-                "valueValidators": [
-                  {
-                    "type": "NON_EMPTY"
-                  }
-                ]
-              },
-              {
-                "type": "SELECT",
-                "name": "micropaymentSubClass",
-                "displayName": "MICROPAYMENT subclass:",
-                "macrosInSelect": false,
-                "selectItems": [
-                  {
-                    "value": "firstbuy",
-                    "displayValue": "firstbuy"
-                  },
-                  {
-                    "value": "buyitem",
-                    "displayValue": "buyitem"
-                  },
-                  {
-                    "value": "buycurrency",
-                    "displayValue": "buycurrency"
-                  },
-                  {
-                    "value": "buycurrencypr",
-                    "displayValue": "buycurrencypr"
-                  },
-                  {
-                    "value": "buypack",
-                    "displayValue": "buypack"
-                  },
-                  {
-                    "value": "unlockpremium",
-                    "displayValue": "unlockpremium"
-                  }
-                ],
-                "simpleValueType": true,
-                "enablingConditions": [
-                  {
-                    "paramName": "conversionClass",
-                    "paramValue": "micropayment",
-                    "type": "EQUALS"
-                  }
-                ],
-                "valueValidators": [
-                  {
-                    "type": "NON_EMPTY"
-                  }
-                ]
-              },
-              {
-                "type": "SELECT",
-                "name": "appinstallSubClass",
-                "displayName": "APP_INSTALL subclass:",
-                "macrosInSelect": false,
-                "selectItems": [
-                  {
-                    "value": "android",
-                    "displayValue": "android"
-                  },
-                  {
-                    "value": "ios",
-                    "displayValue": "ios"
-                  },
-                  {
-                    "value": "install",
-                    "displayValue": "install"
-                  }
-                ],
-                "simpleValueType": true,
-                "enablingConditions": [
-                  {
-                    "paramName": "conversionClass",
-                    "paramValue": "appinstall",
-                    "type": "EQUALS"
-                  }
-                ],
-                "valueValidators": [
-                  {
-                    "type": "NON_EMPTY"
-                  }
-                ]
-              },
-              {
-                "type": "SELECT",
-                "name": "appactionSubClass",
-                "displayName": "APP_ACTION subclass:",
-                "macrosInSelect": false,
-                "selectItems": [
-                  {
-                    "value": "openapp",
-                    "displayValue": "openapp"
-                  },
-                  {
-                    "value": "levela",
-                    "displayValue": "levela"
-                  },
-                  {
-                    "value": "levelb",
-                    "displayValue": "levelb"
-                  },
-                  {
-                    "value": "rewardedad",
-                    "displayValue": "rewardedad"
-                  }
-                ],
-                "simpleValueType": true,
-                "enablingConditions": [
-                  {
-                    "paramName": "conversionClass",
-                    "paramValue": "appaction",
-                    "type": "EQUALS"
-                  }
-                ],
-                "valueValidators": [
-                  {
-                    "type": "NON_EMPTY"
-                  }
-                ]
-              }
-            ],
-            "valueValidators": [
-              {
-                "type": "NON_EMPTY"
-              }
-            ]
-          },
-          {
-            "type": "LABEL",
-            "name": "optionalParams",
-            "displayName": "Select parameters",
-            "enablingConditions": [
-              {
-                "paramName": "tagConversion",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
             ]
           },
           {
             "type": "CHECKBOX",
-            "name": "conversionIdCheck",
-            "checkboxText": "Conversion identifier",
+            "name": "tagConversion",
+            "checkboxText": "Conversion code",
             "simpleValueType": true,
+            "help": "This tag should be triggered for other types of conversions placed on the website, regardless of traffic source.",
             "subParams": [
               {
-                "type": "SELECT",
-                "name": "conversionId",
-                "displayName": "Select variable:",
-                "macrosInSelect": true,
-                "selectItems": [],
-                "simpleValueType": true,
+                "type": "LABEL",
+                "name": "selectConversionClass",
+                "displayName": "Select conversion class",
                 "enablingConditions": [
                   {
-                    "paramName": "conversionIdCheck",
+                    "paramName": "tagConversion",
                     "paramValue": true,
                     "type": "EQUALS"
                   }
+                ]
+              },
+              {
+                "type": "SELECT",
+                "name": "conversionClass",
+                "displayName": "Conversion class:",
+                "macrosInSelect": false,
+                "selectItems": [
+                  {
+                    "value": "action",
+                    "displayValue": "ACTION"
+                  },
+                  {
+                    "value": "appaction",
+                    "displayValue": "APP_ACTION"
+                  },
+                  {
+                    "value": "appinstall",
+                    "displayValue": "APP_INSTALL"
+                  },
+                  {
+                    "value": "micropayment",
+                    "displayValue": "MICROPAYMENT"
+                  },
+                  {
+                    "value": "order",
+                    "displayValue": "ORDER"
+                  }
                 ],
+                "simpleValueType": true,
                 "valueValidators": [
                   {
                     "type": "NON_EMPTY"
                   }
+                ],
+                "enablingConditions": [
+                  {
+                    "paramName": "tagConversion",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ],
+                "subParams": [
+                  {
+                    "type": "SELECT",
+                    "name": "actionSubClass",
+                    "displayName": "ACTION subclass:",
+                    "macrosInSelect": false,
+                    "selectItems": [
+                      {
+                        "value": "shownumber",
+                        "displayValue": "shownumber"
+                      },
+                      {
+                        "value": "call",
+                        "displayValue": "call"
+                      },
+                      {
+                        "value": "message",
+                        "displayValue": "message"
+                      },
+                      {
+                        "value": "text",
+                        "displayValue": "text"
+                      },
+                      {
+                        "value": "chat",
+                        "displayValue": "chat"
+                      },
+                      {
+                        "value": "postad",
+                        "displayValue": "postad"
+                      },
+                      {
+                        "value": "form",
+                        "displayValue": "form"
+                      },
+                      {
+                        "value": "newsletter",
+                        "displayValue": "newsletter"
+                      },
+                      {
+                        "value": "loyalty",
+                        "displayValue": "loyalty"
+                      },
+                      {
+                        "value": "account",
+                        "displayValue": "account"
+                      },
+                      {
+                        "value": "favourite",
+                        "displayValue": "favourite"
+                      },
+                      {
+                        "value": "propertyrent",
+                        "displayValue": "propertyrent"
+                      },
+                      {
+                        "value": "propertybuilder",
+                        "displayValue": "propertybuilder"
+                      },
+                      {
+                        "value": "propertyprivate",
+                        "displayValue": "propertyprivate"
+                      },
+                      {
+                        "value": "testdrive",
+                        "displayValue": "testdrive"
+                      },
+                      {
+                        "value": "viewoffer",
+                        "displayValue": "viewoffer"
+                      },
+                      {
+                        "value": "dwnldprclist",
+                        "displayValue": "dwnldprclist"
+                      },
+                      {
+                        "value": "dwnldprclista",
+                        "displayValue": "dwnldprclista"
+                      },
+                      {
+                        "value": "finddealer",
+                        "displayValue": "finddealer"
+                      },
+                      {
+                        "value": "clickthrough",
+                        "displayValue": "clickthrough"
+                      },
+                      {
+                        "value": "custom1",
+                        "displayValue": "custom1"
+                      },
+                      {
+                        "value": "custom2",
+                        "displayValue": "custom2"
+                      }
+                    ],
+                    "simpleValueType": true,
+                    "valueValidators": [
+                      {
+                        "type": "NON_EMPTY"
+                      }
+                    ],
+                    "enablingConditions": [
+                      {
+                        "paramName": "conversionClass",
+                        "paramValue": "action",
+                        "type": "EQUALS"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SELECT",
+                    "name": "orderSubClass",
+                    "displayName": "Order subclass:",
+                    "macrosInSelect": false,
+                    "selectItems": [
+                      {
+                        "value": "purchase",
+                        "displayValue": "purchase"
+                      },
+                      {
+                        "value": "travelflight",
+                        "displayValue": "travelflight"
+                      },
+                      {
+                        "value": "travelhotel",
+                        "displayValue": "travelhotel"
+                      },
+                      {
+                        "value": "travelpackage",
+                        "displayValue": "travelpackage"
+                      },
+                      {
+                        "value": "salepromo",
+                        "displayValue": "salepromo"
+                      },
+                      {
+                        "value": "salenew",
+                        "displayValue": "salenew"
+                      },
+                      {
+                        "value": "salepremium",
+                        "displayValue": "salepremium"
+                      },
+                      {
+                        "value": "ncsale",
+                        "displayValue": "ncsale"
+                      },
+                      {
+                        "value": "ecsale",
+                        "displayValue": "ecsale"
+                      }
+                    ],
+                    "simpleValueType": true,
+                    "enablingConditions": [
+                      {
+                        "paramName": "conversionClass",
+                        "paramValue": "order",
+                        "type": "EQUALS"
+                      }
+                    ],
+                    "valueValidators": [
+                      {
+                        "type": "NON_EMPTY"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SELECT",
+                    "name": "micopaymentSubClass",
+                    "displayName": "MICROPAYMENT subclass:",
+                    "macrosInSelect": false,
+                    "selectItems": [
+                      {
+                        "value": "firstbuy",
+                        "displayValue": "firstbuy"
+                      },
+                      {
+                        "value": "buyitem",
+                        "displayValue": "buyitem"
+                      },
+                      {
+                        "value": "buycurrency",
+                        "displayValue": "buycurrency"
+                      },
+                      {
+                        "value": "buycurrencypr",
+                        "displayValue": "buycurrencypr"
+                      },
+                      {
+                        "value": "buypack",
+                        "displayValue": "buypack"
+                      },
+                      {
+                        "value": "unlockpremium",
+                        "displayValue": "unlockpremium"
+                      }
+                    ],
+                    "simpleValueType": true,
+                    "enablingConditions": [
+                      {
+                        "paramName": "conversionClass",
+                        "paramValue": "micropayment",
+                        "type": "EQUALS"
+                      }
+                    ],
+                    "valueValidators": [
+                      {
+                        "type": "NON_EMPTY"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SELECT",
+                    "name": "appinstallSubClass",
+                    "displayName": "APP_INSTALL subclass:",
+                    "macrosInSelect": false,
+                    "selectItems": [
+                      {
+                        "value": "android",
+                        "displayValue": "android"
+                      },
+                      {
+                        "value": "ios",
+                        "displayValue": "ios"
+                      },
+                      {
+                        "value": "install",
+                        "displayValue": "install"
+                      }
+                    ],
+                    "simpleValueType": true,
+                    "enablingConditions": [
+                      {
+                        "paramName": "conversionClass",
+                        "paramValue": "appinstall",
+                        "type": "EQUALS"
+                      }
+                    ],
+                    "valueValidators": [
+                      {
+                        "type": "NON_EMPTY"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SELECT",
+                    "name": "appactionSubClass",
+                    "displayName": "APP_ACTION subclass:",
+                    "macrosInSelect": false,
+                    "selectItems": [
+                      {
+                        "value": "openapp",
+                        "displayValue": "openapp"
+                      },
+                      {
+                        "value": "levela",
+                        "displayValue": "levela"
+                      },
+                      {
+                        "value": "levelb",
+                        "displayValue": "levelb"
+                      },
+                      {
+                        "value": "rewardedad",
+                        "displayValue": "rewardedad"
+                      }
+                    ],
+                    "simpleValueType": true,
+                    "enablingConditions": [
+                      {
+                        "paramName": "conversionClass",
+                        "paramValue": "appaction",
+                        "type": "EQUALS"
+                      }
+                    ],
+                    "valueValidators": [
+                      {
+                        "type": "NON_EMPTY"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "LABEL",
+                "name": "optionalParams",
+                "displayName": "Select parameters",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagConversion",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              },
+              {
+                "type": "CHECKBOX",
+                "name": "conversionIdCheck",
+                "checkboxText": "Conversion identifier",
+                "simpleValueType": true,
+                "help": "(Optional) Select variable that contains the internal (shop) offer identifier.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagConversion",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ],
+                "subParams": [
+                  {
+                    "type": "SELECT",
+                    "name": "conversionId",
+                    "displayName": "Select variable:",
+                    "macrosInSelect": true,
+                    "selectItems": [],
+                    "simpleValueType": true,
+                    "enablingConditions": [
+                      {
+                        "paramName": "conversionIdCheck",
+                        "paramValue": true,
+                        "type": "EQUALS"
+                      }
+                    ],
+                    "valueValidators": [
+                      {
+                        "type": "NON_EMPTY"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "CHECKBOX",
+                "name": "conversionValueCheck",
+                "checkboxText": "Conversion value",
+                "simpleValueType": true,
+                "help": "(Optional) Select variable that contains value of the order. This value should only be formatted with the decimal point (dot or comma), without the thousands separator.",
+                "subParams": [
+                  {
+                    "type": "SELECT",
+                    "name": "conversionValue",
+                    "displayName": "Select variable:",
+                    "macrosInSelect": true,
+                    "selectItems": [],
+                    "simpleValueType": true,
+                    "enablingConditions": [
+                      {
+                        "paramName": "conversionValueCheck",
+                        "paramValue": true,
+                        "type": "EQUALS"
+                      }
+                    ],
+                    "valueValidators": [
+                      {
+                        "type": "NON_EMPTY"
+                      }
+                    ]
+                  }
+                ],
+                "enablingConditions": [
+                  {
+                    "paramName": "tagConversion",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              },
+              {
+                "type": "CHECKBOX",
+                "name": "conversionOfferIdsCheck",
+                "checkboxText": "Product identifiers",
+                "simpleValueType": true,
+                "help": "(Optional) Select variable that contains array with products IDs that are currently in the shopping cart. Example: [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027].",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagConversion",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ],
+                "subParams": [
+                  {
+                    "type": "SELECT",
+                    "name": "conversionOfferIds",
+                    "displayName": "Select variable:",
+                    "macrosInSelect": true,
+                    "selectItems": [],
+                    "simpleValueType": true,
+                    "valueValidators": [
+                      {
+                        "type": "NON_EMPTY"
+                      }
+                    ],
+                    "enablingConditions": [
+                      {
+                        "paramName": "conversionOfferIdsCheck",
+                        "paramValue": true,
+                        "type": "EQUALS"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "CHECKBOX",
+                "name": "conversionIsAttributedCheck",
+                "checkboxText": "Is attributed",
+                "simpleValueType": true,
+                "help": "(Optional) Select variable that returns true if conversion should be attributed to RTB House and false if not.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagConversion",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ],
+                "subParams": [
+                  {
+                    "type": "SELECT",
+                    "name": "conversionIsAttributed",
+                    "displayName": "Select variable:",
+                    "macrosInSelect": true,
+                    "selectItems": [],
+                    "simpleValueType": true,
+                    "enablingConditions": [
+                      {
+                        "paramName": "conversionIsAttributed",
+                        "paramValue": true,
+                        "type": "EQUALS"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "CHECKBOX",
+                "name": "conversionCurrencyCheck",
+                "checkboxText": "Currency code",
+                "simpleValueType": true,
+                "help": "(Optional) Select variable that returns conversion currency formatted as 3 digit currency code, e.g. \"USD\".",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagConversion",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ],
+                "subParams": [
+                  {
+                    "type": "SELECT",
+                    "name": "conversionCurrency",
+                    "displayName": "Select variable:",
+                    "macrosInSelect": true,
+                    "selectItems": [],
+                    "simpleValueType": true,
+                    "enablingConditions": [
+                      {
+                        "paramName": "conversionCurrencyCheck",
+                        "paramValue": true,
+                        "type": "EQUALS"
+                      }
+                    ]
+                  }
                 ]
               }
-            ],
-            "enablingConditions": [
-              {
-                "paramName": "tagConversion",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "(Optional) Select variable that contains the internal (shop) order identifier."
+            ]
           },
           {
             "type": "CHECKBOX",
-            "name": "conversionValueCheck",
-            "checkboxText": "Conversion value",
+            "name": "tagPlacebo",
+            "checkboxText": "Other pages code",
             "simpleValueType": true,
+            "help": "In order to attribute each order to the right source, it is important that each page of the website (especially landing pages of all advertising campaigns – both current campaigns and future ones) has a proper RTB House tag implemented. If there are pages that do not have any of the tags listed above implemented, then this tag should be added. This tag can also be added to all the pages of the site in addition to any of the other tags listed above."
+          }
+        ],
+        "groupStyle": "NO_ZIPPY"
+      },
+      {
+        "type": "GROUP",
+        "name": "Strongly recommended tags",
+        "displayName": "Strongly recommended tags",
+        "groupStyle": "NO_ZIPPY",
+        "subParams": [
+          {
+            "type": "CHECKBOX",
+            "name": "tagWishlist",
+            "checkboxText": "Wishlist or favourite code",
+            "simpleValueType": true,
+            "help": "This tag should be triggered when a user adds a product to their wishlist or favourites a product.",
             "subParams": [
               {
                 "type": "SELECT",
-                "name": "conversionValue",
-                "displayName": "Select variable:",
+                "name": "wishlistOfferId",
+                "displayName": "Product identifier:",
                 "macrosInSelect": true,
                 "selectItems": [],
                 "simpleValueType": true,
+                "help": "Select variable that contains product ID.",
                 "enablingConditions": [
                   {
-                    "paramName": "conversionValueCheck",
+                    "paramName": "tagWishlist",
                     "paramValue": true,
                     "type": "EQUALS"
-                  }
-                ],
-                "valueValidators": [
-                  {
-                    "type": "NON_EMPTY"
                   }
                 ]
               }
-            ],
-            "enablingConditions": [
-              {
-                "paramName": "tagConversion",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "(Optional) Select variable that contains value of the order. This value should only be formatted with the decimal point (dot or comma), without the thousands separator."
+            ]
           },
           {
             "type": "CHECKBOX",
-            "name": "conversionOfferIdsCheck",
-            "checkboxText": "Product identifiers",
+            "name": "tagSize",
+            "checkboxText": "Product size selection code",
             "simpleValueType": true,
+            "help": "This code should be executed when a user selects a product size or colour. The code should not be triggered with a default value. It should be triggered each time a user selects or changes the product size or colour.",
             "subParams": [
               {
                 "type": "SELECT",
-                "name": "conversionOfferIds",
-                "displayName": "Select variable:",
+                "name": "productSize",
+                "displayName": "Product size:",
                 "macrosInSelect": true,
                 "selectItems": [],
                 "simpleValueType": true,
+                "help": "Select variable that contains string that describes product size or (e.g., S, XXL, medium, 38, 44).",
                 "enablingConditions": [
                   {
-                    "paramName": "conversionOfferIdsCheck",
+                    "paramName": "tagSize",
                     "paramValue": true,
                     "type": "EQUALS"
-                  }
-                ],
-                "valueValidators": [
-                  {
-                    "type": "NON_EMPTY"
                   }
                 ]
               }
-            ],
-            "enablingConditions": [
-              {
-                "paramName": "tagConversion",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "(Optional) Select variable that contains array with products IDs that are currently in the shopping cart. Example: [\u0027123\u0027, \u0027456\u0027, \u0027789\u0027]."
+            ]
+          }
+        ]
+      },
+      {
+        "type": "GROUP",
+        "name": "Recommended tags",
+        "displayName": "Recommended tags",
+        "groupStyle": "NO_ZIPPY",
+        "subParams": [
+          {
+            "type": "CHECKBOX",
+            "name": "tagSales",
+            "checkboxText": "Sale or promo page code",
+            "simpleValueType": true,
+            "help": "This code should be added to sales or promotions page"
           },
           {
             "type": "CHECKBOX",
-            "name": "conversionIsAttributedCheck",
-            "checkboxText": "Is attributed",
+            "name": "tagNewOffers",
+            "checkboxText": "New products (offers) page code",
             "simpleValueType": true,
-            "subParams": [
-              {
-                "type": "SELECT",
-                "name": "conversionIsAttributed",
-                "displayName": "Select variable:",
-                "macrosInSelect": true,
-                "selectItems": [],
-                "simpleValueType": true,
-                "enablingConditions": [
-                  {
-                    "paramName": "conversionIsAttributedCheck",
-                    "paramValue": true,
-                    "type": "EQUALS"
-                  }
-                ],
-                "valueValidators": []
-              }
-            ],
-            "enablingConditions": [
-              {
-                "paramName": "tagConversion",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "(Optional) Select variable that returns true if conversion should be attributed to RTB House and false if not."
+            "help": "The code should be added to pages dedicated to displaying new products."
           },
           {
             "type": "CHECKBOX",
-            "name": "conversionCurrencyCheck",
-            "checkboxText": "Currency code",
+            "name": "tagOfflineCheck",
+            "checkboxText": "Offline store checking code",
             "simpleValueType": true,
-            "subParams": [
-              {
-                "type": "SELECT",
-                "name": "conversionCurrency",
-                "displayName": "Select variable:",
-                "macrosInSelect": true,
-                "selectItems": [],
-                "simpleValueType": true,
-                "enablingConditions": [
-                  {
-                    "paramName": "conversionCurrencyCheck",
-                    "paramValue": true,
-                    "type": "EQUALS"
-                  }
-                ],
-                "valueValidators": []
-              }
-            ],
-            "enablingConditions": [
-              {
-                "paramName": "tagConversion",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "(Optional) Select variable that returns conversion currency formatted as 3 digit currency code, e.g. \"USD\"."
+            "help": "This code should be executed every time a user checks product availability in an offline store."
           }
-        ],
-        "help": "This tag should be triggered for other types of conversions placed on the website, regardless of traffic source."
+        ]
       },
       {
-        "type": "CHECKBOX",
-        "name": "tagPlacebo",
-        "checkboxText": "Other pages code",
-        "simpleValueType": true,
-        "help": "In order to attribute each order to the right source, it is important that each page of the website (especially landing pages of all advertising campaigns – both current campaigns and future ones) has a proper RTB House tag implemented. If there are pages that do not have any of the tags listed above implemented, then this tag should be added. This tag can also be added to all the pages of the site in addition to any of the other tags listed above."
-      },
-      {
-        "type": "LABEL",
-        "name": "labelOther",
-        "displayName": "Other"
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagUid",
-        "checkboxText": "User ID (cross-device)",
-        "simpleValueType": true,
+        "type": "GROUP",
+        "name": "Other",
+        "displayName": "Other",
+        "groupStyle": "NO_ZIPPY",
         "subParams": [
           {
-            "type": "SELECT",
-            "name": "uid",
-            "displayName": "Variable containing the current user identifier:",
-            "macrosInSelect": true,
-            "selectItems": [],
+            "type": "CHECKBOX",
+            "name": "tagBasket",
+            "checkboxText": "Shopping cart - not empty",
             "simpleValueType": true,
-            "enablingConditions": [
-              {
-                "paramName": "tagUid",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "Select variable that contains string with an anonymized user identifier."
-          }
-        ],
-        "help": "The code should be added when you want to pass a unique and anonymized ID of the user - for example for cross-device targeting possibilities."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagAid",
-        "checkboxText": "Anonymous user ID",
-        "simpleValueType": true,
-        "subParams": [
+            "help": "This tag should only be used if it’s not possible to implement Shopping cart – product add or Shopping cart – product status code.  This tag should be executed only when the cart is not empty."
+          },
           {
-            "type": "SELECT",
-            "name": "aid",
-            "displayName": "Variable containing the current anonymous user identifier:",
-            "macrosInSelect": true,
-            "selectItems": [],
+            "type": "CHECKBOX",
+            "name": "tagConsent",
+            "checkboxText": "Non-consent code",
             "simpleValueType": true,
-            "enablingConditions": [
-              {
-                "paramName": "tagAid",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "Select variable that contains string with an anonymized ID of the user."
-          }
-        ],
-        "help": "The code should be added when you want to pass a unique ID of an anonymous user."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagSid",
-        "checkboxText": "Session ID",
-        "simpleValueType": true,
-        "subParams": [
+            "help": "The tag should be executed once a user has withdrawn the consent for the advertiser to process their data for the purpose of displaying personalized ads of the advertiser."
+          },
           {
-            "type": "SELECT",
-            "name": "sid",
-            "displayName": "Variable containing the current user session identifier:",
-            "macrosInSelect": true,
-            "selectItems": [],
+            "type": "CHECKBOX",
+            "name": "tagCustom",
+            "checkboxText": "Custom Codes",
             "simpleValueType": true,
-            "enablingConditions": [
-              {
-                "paramName": "tagSid",
-                "paramValue": true,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "Select variable that contains string with a session ID of the user."
+            "help": "Predefined custom tags. These should be consulted with RTB House Customer Service Manager."
           }
-        ],
-        "help": "The code should be added when you want to pass an unique session ID of the user."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagConsent",
-        "checkboxText": "Non-consent code",
-        "simpleValueType": true,
-        "help": "The tag should be executed once a user has withdrawn the consent for the advertiser to process their data for the purpose of displaying personalized ads of the advertiser."
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "tagCustom",
-        "checkboxText": "Custom Codes",
-        "simpleValueType": true,
-        "help": "Predefined custom tags. These should be consulted with RTB House Customer Service Manager."
+        ]
       }
     ],
     "enablingConditions": [
@@ -1673,11 +1702,442 @@ ___WEB_PERMISSIONS___
 
 ___TESTS___
 
-scenarios: []
+scenarios:
+- name: Main tagging code - No custom region
+  code: |-
+    const baseTagNoCustomRegionMockData = {
+      tagType: 'BASE_TAG',
+      advTaggingHash: 'DnG4eIt7Thp5aDUJXpsV',
+      advRegion: 'test_noCustom'
+    };
+
+    runCode(baseTagNoCustomRegionMockData);
+
+    const baseTagNoCustomRegionResult = {
+      eventType: 'init',
+      value: 'DnG4eIt7Thp5aDUJXpsV',
+      dc: 'test_noCustom'
+    };
+
+    assertThat(rtbhEvents).contains(baseTagNoCustomRegionResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Main tagging code - EMEA custom region
+  code: |-
+    const baseTagEmeaMockData = {
+      tagType: 'BASE_TAG',
+      advTaggingHash: 'DnG4eIt7Thp5aDUJXpsV',
+      advRegion: 'custom',
+      advCustomRegion: 'emea'
+    };
+
+    const baseTagEmeaResult = {
+      eventType: 'init',
+      value: 'DnG4eIt7Thp5aDUJXpsV',
+      dc: 'ams'
+    };
+
+    runCode(baseTagEmeaMockData);
+
+    assertThat(rtbhEvents).contains(baseTagEmeaResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Main tagging code - AMERICAS custom region
+  code: |-
+    const baseTagAmericasMockData = {
+      tagType: 'BASE_TAG',
+      advTaggingHash: 'DnG4eIt7Thp5aDUJXpsV',
+      advRegion: 'custom',
+      advCustomRegion: 'americas'
+    };
+
+    const baseTagAmericasResult = {
+      eventType: 'init',
+      value: 'DnG4eIt7Thp5aDUJXpsV',
+      dc: 'us'
+    };
+
+    runCode(baseTagAmericasMockData);
+
+    assertThat(rtbhEvents).contains(baseTagAmericasResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Main tagging code - ASIA custom region
+  code: |-
+    const baseTagAsiaMockData = {
+      tagType: 'BASE_TAG',
+      advTaggingHash: 'DnG4eIt7Thp5aDUJXpsV',
+      advRegion: 'custom',
+      advCustomRegion: 'asia'
+    };
+
+    const baseTagAsiaResult = {
+      eventType: 'init',
+      value: 'DnG4eIt7Thp5aDUJXpsV',
+      dc: 'asia'
+    };
+
+    runCode(baseTagAsiaMockData);
+
+    assertThat(rtbhEvents).contains(baseTagAsiaResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Main tagging code - NO_MATCH custom region
+  code: |-
+    const baseTagNoMatchMockData = {
+      tagType: 'BASE_TAG',
+      advTaggingHash: 'DnG4eIt7Thp5aDUJXpsV',
+      advRegion: 'custom',
+      advCustomRegion: 'no_matching_case'
+    };
+
+    const baseTagNoMatchResult = {
+      eventType: 'init',
+      value: 'DnG4eIt7Thp5aDUJXpsV',
+      dc: 'ams'
+    };
+
+    runCode(baseTagNoMatchMockData);
+
+    assertThat(rtbhEvents).contains(baseTagNoMatchResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Main tagging code - Inject HostedJS
+  code: |-
+    mock('injectScript', (baseScriptUrl, onSuccess, onFailure) => {
+      assertThat(baseScriptUrl, 'injected script').isEqualTo('https://tags.creativecdn.com/' + baseTagMockData.advTaggingHash + '.js');
+      onSuccess();
+    });
+
+    runCode(baseTagMockData);
+
+    assertApi('injectScript').wasCalled();
+    assertApi('setInWindow').wasCalledWith('rtbhEvents', [], false);
+    assertThat(rtbhEvents).contains({eventType: 'init', value: baseTagMockData.advTaggingHash, dc: 'ams'});
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - User ID (cross-device)
+  code: |-
+    const eventTagUidStartMockData = {
+      tagType: 'EVENT_TAG',
+      tagUid: true,
+      uid: 'uiduid-121212'
+    };
+
+    runCode(eventTagUidStartMockData);
+
+    const eventTagUidResult = {
+      eventType: 'uid',
+      id : 'uiduid-121212'
+    };
+
+    assertThat(rtbhEvents).contains(eventTagUidResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Anonymous user ID
+  code: |-
+    const eventTagAidStartMockData = {
+      tagType: 'EVENT_TAG',
+      tagAid: true,
+      aid: 'aidaid-323232'
+    };
+
+    runCode(eventTagAidStartMockData);
+
+    const eventTagAidResult = {
+      eventType: 'aid',
+      id : 'aidaid-323232'
+    };
+
+    assertThat(rtbhEvents).contains(eventTagAidResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Session ID
+  code: |-
+    const eventTagSidStartMockData = {
+      tagType: 'EVENT_TAG',
+      tagSid: true,
+      sid: 'sidsid-121212'
+    };
+
+    runCode(eventTagSidStartMockData);
+
+    const eventTagSidResult = {
+      eventType: 'sid',
+      id : 'sidsid-121212'
+    };
+
+    assertThat(rtbhEvents).contains(eventTagSidResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Home page code
+  code: "const eventTagHomeMockData = {\n  tagType: 'EVENT_TAG',\n  tagHome: true,\n\
+    };\n\nconst eventTagHomeResult = {\n  eventType: 'home', \n};\n\nrunCode(eventTagHomeMockData);\n\
+    \    \nassertThat(rtbhEvents).contains(eventTagHomeResult);\nassertApi('gtmOnSuccess').wasCalled();"
+- name: Event tag - Category page code
+  code: "const eventTagCategoryMockData = {\n  tagType: 'EVENT_TAG',\n  tagCategory:\
+    \ true,\n  category: 1,\n};\n\nconst eventTagCategoryResult = {\n  eventType:\
+    \ 'category', \n  categoryId: 1,\n};\n\nrunCode(eventTagCategoryMockData);\n\n\
+    assertThat(rtbhEvents).contains(eventTagCategoryResult);\nassertApi('gtmOnSuccess').wasCalled();"
+- name: Event tag - Product (offer) page code
+  code: "const eventTagOfferMockData = {\n  tagType: 'EVENT_TAG',\n  tagOffer: true,\n\
+    \  offerOfferId: 1,\n};\n\nconst eventTagOfferResult = {\n  eventType: 'offer',\
+    \     \n  offerId: 1,\n};\n\nrunCode(eventTagOfferMockData);\n\nassertThat(rtbhEvents).contains(eventTagOfferResult);\n\
+    assertApi('gtmOnSuccess').wasCalled();"
+- name: Event tag - Search result page code
+  code: "const eventTagListingMockData = {\n  tagType: 'EVENT_TAG',\n  tagListing:\
+    \     true,\n  listingOfferIds: [1,2,3],\n};\n\nconst eventTagListingResult =\
+    \ {\n  eventType: 'listing', \n  offerIds: [1,2,3],\n};\n\nrunCode(eventTagListingMockData);\n\
+    \    \nassertThat(rtbhEvents).contains(eventTagListingResult);\nassertApi('gtmOnSuccess').wasCalled();"
+- name: Event tag - Shopping cart - add-to-cart code
+  code: |-
+    const eventTagBasketAddMockData = {
+      tagType: 'EVENT_TAG',
+      tagBasketAdd: true,
+      basketAddOfferId: '12345'
+    };
+    runCode(eventTagBasketAddMockData);
+    const eventTagBasketAddResult = {
+      eventType: 'basketadd',
+      offerId: '12345'
+    };
+    assertThat(rtbhEvents).contains(eventTagBasketAddResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Shopping cart - status code
+  code: "const eventTagBasketStatusMockData = {\n  tagType: 'EVENT_TAG',\n  tagBasketStatus:\
+    \     true,\n  basketStatusOfferIds: '12345,123456'\n  \n};\n\nrunCode(eventTagBasketStatusMockData);\n\
+    \    const eventTagBasketAddResult = {\n  eventType: 'basketstatus',\n  offerIds:\
+    \ '12345,123456'\n    };\n\nassertThat(rtbhEvents).contains(eventTagBasketAddResult);\n\
+    assertApi('gtmOnSuccess').wasCalled();"
+- name: Event tag - Order process start code
+  code: |-
+    const eventTagOrderStartMockData = {
+      tagType: 'EVENT_TAG',
+      tagStartOrder: true,
+    };
+
+    runCode(eventTagOrderStartMockData);
+
+    const eventTagStartOrderResult = {
+      eventType: 'startorder',
+    };
+
+    assertThat(rtbhEvents).contains(eventTagStartOrderResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Conversion confirmation - Order code - simple
+  code: |-
+    runCode(eventTagOrderMockData);
+
+    assertThat(rtbhEvents).contains(eventTagOrderResult);
+
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Conversion confirmation - Order code - conversion subclass
+  code: |-
+    eventTagOrderMockData.orderTagSubclassCheck = true;
+    eventTagOrderMockData.orderTagSubClass = 'register';
+
+    runCode(eventTagOrderMockData);
+    eventTagOrderResult.conversionSubClass = 'register';
+
+    assertThat(rtbhEvents).contains(eventTagOrderResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Conversion confirmation - Order code - attributed order
+  code: |-
+    eventTagOrderMockData.orderIsAttributedCheck = true;
+    eventTagOrderMockData.orderIsAttributed = 'rtb';
+
+    runCode(eventTagOrderMockData);
+    eventTagOrderResult.isAttributed = 'rtb';
+
+    assertThat(rtbhEvents).contains(eventTagOrderResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Conversion confirmation - Order code - currency set
+  code: |-
+    eventTagOrderMockData.orderCurrencyCheck = true;
+    eventTagOrderMockData.orderCurrency = 'TRY';
+
+    runCode(eventTagOrderMockData);
+    eventTagOrderResult.conversionCurrency = 'TRY';
+
+    assertThat(rtbhEvents).contains(eventTagOrderResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Conversion code - conversion id set
+  code: |-
+    eventTagConversionMockData.conversionIdCheck = true;
+    eventTagConversionMockData.conversionId = '0xBADF00D';
+
+    runCode(eventTagConversionMockData);
+    eventTagConversionResult.conversionId = '0xBADF00D';
+
+    assertThat(rtbhEvents).contains(eventTagConversionResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Conversion code - simple
+  code: |-
+    runCode(eventTagConversionMockData);
+
+    assertThat(rtbhEvents).contains(eventTagConversionResult);
+
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Conversion code - conversion value set
+  code: |-
+    eventTagConversionMockData.conversionValueCheck = true;
+    eventTagConversionMockData.conversionValue = 456.78;
+
+    runCode(eventTagConversionMockData);
+    eventTagConversionResult.conversionValue = 456.78;
+
+    assertThat(rtbhEvents).contains(eventTagConversionResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Conversion code - conversion offer ids set
+  code: |-
+    eventTagConversionMockData.conversionOfferIdsCheck = true;
+    eventTagConversionMockData.conversionOfferIds = ['baba', 'yaga'];
+
+    runCode(eventTagConversionMockData);
+    eventTagConversionResult.offerIds = ['baba', 'yaga'];
+
+    assertThat(rtbhEvents).contains(eventTagConversionResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Conversion code - conversion attributed set
+  code: |-
+    eventTagConversionMockData.conversionIsAttributedCheck = true;
+    eventTagConversionMockData.conversionIsAttributed = true;
+
+    runCode(eventTagConversionMockData);
+    eventTagConversionResult.isAttributed = true;
+
+    assertThat(rtbhEvents).contains(eventTagConversionResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Conversion code - conversion currency set
+  code: |-
+    eventTagConversionMockData.conversionCurrencyCheck = true;
+    eventTagConversionMockData.conversionCurrency = 'TRY';
+
+    runCode(eventTagConversionMockData);
+    eventTagConversionResult.conversionCurrency = 'TRY';
+
+    assertThat(rtbhEvents).contains(eventTagConversionResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Other pages code
+  code: |-
+    const eventTagPlaceboMockData = {
+      tagType: 'EVENT_TAG',
+      tagPlacebo: true,
+    };
+
+    runCode(eventTagPlaceboMockData);
+
+    const eventPlaceboResult = {
+      eventType: 'placebo',
+    };
+
+    assertThat(rtbhEvents).contains(eventPlaceboResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Wishlist or favourite code
+  code: "const eventTagWishlistMockData = {\n  tagType: 'EVENT_TAG',\n  tagWishlist:\
+    \ true,\n  wishlistOfferId: 1,\n};\n\nconst eventTagWishlistResult = {\n  eventType:\
+    \ 'wishlist', \n  offerId: 1,\n};\n\nrunCode(eventTagWishlistMockData);\n\nassertThat(rtbhEvents).contains(eventTagWishlistResult);\n\
+    assertApi('gtmOnSuccess').wasCalled();"
+- name: Event tag - Product size selection code
+  code: "const eventTagSizeMockData = {\n  tagType: 'EVENT_TAG',\n  tagSize: true,\n\
+    \  productSize: 1,\n};\n\nconst eventTagSizeResult = {\n  eventType: 'size', \n\
+    \  size: 1,\n};\n\nrunCode(eventTagSizeMockData);\n\nassertThat(rtbhEvents).contains(eventTagSizeResult);\n\
+    assertApi('gtmOnSuccess').wasCalled();"
+- name: Event tag - Sale or promo page code
+  code: "const eventTagSalesMockData = {\n  tagType: 'EVENT_TAG',\n  tagSales: true,\n\
+    \    };\n\nconst eventTagSalesResult = {\n  eventType: 'sales', \n};\n\nrunCode(eventTagSalesMockData);\n\
+    \    \nassertThat(rtbhEvents).contains(eventTagSalesResult);\nassertApi('gtmOnSuccess').wasCalled();"
+- name: Event tag - New products (offers) page code
+  code: "const eventTagNewOffersMockData = {\n  tagType: 'EVENT_TAG',\n  tagNewOffers:\
+    \ true,\n};\n\nconst eventTagNewOffersResult = {\n  eventType: 'newoffers', \n\
+    };\n\nrunCode(eventTagNewOffersMockData);\n\nassertThat(rtbhEvents).contains(eventTagNewOffersResult);\n\
+    assertApi('gtmOnSuccess').wasCalled();"
+- name: Event tag - Offline store checking code
+  code: "const eventTagOfflineCheckMockData = {\n  tagType: 'EVENT_TAG',\n  tagOfflineCheck:\
+    \ true,\n};\n\nconst eventTagOfflineCheckResult = {\n  eventType: 'offlinecheck',\
+    \     \n};\n\nrunCode(eventTagOfflineCheckMockData);\n\nassertThat(rtbhEvents).contains(eventTagOfflineCheckResult);\n\
+    assertApi('gtmOnSuccess').wasCalled();"
+- name: Event tag - Shopping cart - not empty ('basket')
+  code: |-
+    const eventTagBasketMockData = {
+      tagType: 'EVENT_TAG',
+      tagBasket: true,
+    };
+
+    runCode(eventTagBasketMockData);
+    const eventTagBasketResult = {
+      eventType: 'basket',
+    };
+
+    assertThat(rtbhEvents).contains(eventTagBasketResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Non-consent code
+  code: |-
+    const eventTagNoConsentMockData = {
+      tagType: 'EVENT_TAG',
+      tagConsent: true,
+      consentType: 'disableAds'
+    };
+
+    runCode(eventTagNoConsentMockData);
+
+    const eventNoConsentResult = {
+      eventType: 'consent',
+      consentType : 'disableAds'
+    };
+
+    assertThat(rtbhEvents).contains(eventNoConsentResult);
+    assertApi('gtmOnSuccess').wasCalled();
+- name: Event tag - Custom codes
+  code: |-
+    const eventTagCustomTagMockData = {
+      tagType: 'EVENT_TAG',
+      tagCustom: true,
+      customTagsTable: [{
+        customTagName: 'testName1',
+        customTagValue: 123
+      },
+      {
+        customTagName: 'testName2',
+        customTagValue: ''
+      },
+      {
+        customTagName: 'testName3',
+        customTagValue: null
+      }]
+    };
+
+    runCode(eventTagCustomTagMockData);
+    const eventTagCustomTagResult1 = {
+      eventType: 'custom',
+      name: 'testName1',
+      value: 123
+    };
+
+    const eventTagCustomTagResult2 = {
+      eventType: 'custom',
+      name: 'testName2',
+      value: ''
+    };
+
+    const eventTagCustomTagResult3 = {
+      eventType: 'custom',
+      name: 'testName3',
+      value: null
+    };
+
+    assertThat(rtbhEvents).contains(eventTagCustomTagResult1);
+    assertThat(rtbhEvents).contains(eventTagCustomTagResult2);
+    assertThat(rtbhEvents).contains(eventTagCustomTagResult3);
+
+    assertApi('gtmOnSuccess').wasCalled();
+setup: "const json = require('JSON');\nconst rtbhEvents = [];\n\nmock('injectScript',\
+  \ (_, onSuccess) => {\n  onSuccess();\n});\n\nmock('createQueue', (name) => {\n\
+  \  return (tag) => rtbhEvents.push(tag);\n});\n\nconst baseTagMockData = {\n  tagType:\
+  \ 'BASE_TAG',\n  advTaggingHash: '012345678901234567890',\n  advRegion: 'ams'\n\
+  };\n\nconst eventTagOrderMockData = {\n  tagType: 'EVENT_TAG',\n  tagOrder: true,\n\
+  \  orderId: '123',\n  orderValue: 12.45,\n  orderOfferIds: [123]\n};\n\nconst eventTagOrderResult\
+  \ = {\n  eventType: 'conversion',   \n  conversionClass: 'order',\n  conversionSubClass:\
+  \ 'purchase',\n  conversionId:   '123',\n  conversionValue: 12.45,\n  offerIds:\
+  \ [123]\n};\n\nconst eventTagConversionMockData   = {\n  tagType: 'EVENT_TAG',\n\
+  \  tagConversion: true,\n  conversionClass: 'registration',\n  registrationSubClass:\
+  \ 'newsletter'\n};\n\nconst eventTagConversionResult = {\n  eventType: 'conversion',\
+  \ \n  conversionClass: 'registration',\n  conversionSubClass:   'newsletter',\n\
+  };"
 
 
 ___NOTES___
 
 Created on 8/20/2019, 3:32:36 PM
-
 

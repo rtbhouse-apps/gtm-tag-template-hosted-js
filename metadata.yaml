@@ -2,6 +2,9 @@ homepage: "https://www.rtbhouse.com"
 documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md"
 
 versions:
+  - sha: 1a0a5e204d1a14c821f04ed9265b2f51f9e6cf64
+    changeNotes: Add Event tag groups, update descriptions, add tests
+
   - sha: ba80130f745fb690c15e67d0ad39e87ffd69dccf
     changeNotes: Add select for custom region
 
