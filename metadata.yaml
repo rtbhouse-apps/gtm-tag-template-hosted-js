@@ -2,6 +2,9 @@ homepage: "https://www.rtbhouse.com"
 documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md"
 
 versions:
+  - sha: fd0ca1293149b7bc0d33c429f0b9576d12f8a990
+    changeNotes: Updating conversion initiation code
+
   - sha: 1a0a5e204d1a14c821f04ed9265b2f51f9e6cf64
     changeNotes: Add Event tag groups, update descriptions, add tests
 
