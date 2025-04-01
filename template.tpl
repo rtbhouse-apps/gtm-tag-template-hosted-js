@@ -377,7 +377,7 @@ ___TEMPLATE_PARAMETERS___
           {
             "type": "CHECKBOX",
             "name": "tagStartOrder",
-            "checkboxText": "Order process start code",
+            "checkboxText": "Conversion initiation code",
             "simpleValueType": true,
             "help": "This code should be added to the page which begins order processing, i.e. the checkout page displayed after creating and filling the shopping cart. This is typically the contact details form or any other page displayed after clicking the \"Go to checkout\" or similar button."
           },
@@ -1900,7 +1900,7 @@ scenarios:
     \    const eventTagBasketAddResult = {\n  eventType: 'basketstatus',\n  offerIds:\
     \ '12345,123456'\n    };\n\nassertThat(rtbhEvents).contains(eventTagBasketAddResult);\n\
     assertApi('gtmOnSuccess').wasCalled();"
-- name: Event tag - Order process start code
+- name: Event tag - Conversion initiation code
   code: |-
     const eventTagOrderStartMockData = {
       tagType: 'EVENT_TAG',
