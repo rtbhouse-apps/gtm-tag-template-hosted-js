@@ -156,8 +156,8 @@ ___TEMPLATE_PARAMETERS___
     "subParams": [
       {
         "type": "GROUP",
-        "name": "Tag Identifiers",
-        "displayName": "Tag Identifiers",
+        "name": "Tag identifiers",
+        "displayName": "Tag identifiers",
         "groupStyle": "NO_ZIPPY",
         "subParams": [
           {
@@ -239,8 +239,8 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "GROUP",
-        "name": "Obligatory Tags",
-        "displayName": "Obligatory Tags",
+        "name": "Obligatory tags",
+        "displayName": "Obligatory tags",
         "subParams": [
           {
             "type": "CHECKBOX",
@@ -384,7 +384,7 @@ ___TEMPLATE_PARAMETERS___
           {
             "type": "CHECKBOX",
             "name": "tagOrder",
-            "checkboxText": "Conversion confirmation -  Order code",
+            "checkboxText": "Conversion confirmation - order code",
             "simpleValueType": true,
             "help": "This tag should be triggered on the order confirmation page for all orders placed on the website, regardless of traffic source.",
             "subParams": [
@@ -1915,14 +1915,14 @@ scenarios:
 
     assertThat(rtbhEvents).contains(eventTagStartOrderResult);
     assertApi('gtmOnSuccess').wasCalled();
-- name: Event tag - Conversion confirmation - Order code - simple
+- name: Event tag - Conversion confirmation - order code - simple
   code: |-
     runCode(eventTagOrderMockData);
 
     assertThat(rtbhEvents).contains(eventTagOrderResult);
 
     assertApi('gtmOnSuccess').wasCalled();
-- name: Event tag - Conversion confirmation - Order code - conversion subclass
+- name: Event tag - Conversion confirmation - order code - conversion subclass
   code: |-
     eventTagOrderMockData.orderTagSubclassCheck = true;
     eventTagOrderMockData.orderTagSubClass = 'register';
@@ -1932,7 +1932,7 @@ scenarios:
 
     assertThat(rtbhEvents).contains(eventTagOrderResult);
     assertApi('gtmOnSuccess').wasCalled();
-- name: Event tag - Conversion confirmation - Order code - attributed order
+- name: Event tag - Conversion confirmation - order code - attributed order
   code: |-
     eventTagOrderMockData.orderIsAttributedCheck = true;
     eventTagOrderMockData.orderIsAttributed = 'rtb';
@@ -1942,7 +1942,7 @@ scenarios:
 
     assertThat(rtbhEvents).contains(eventTagOrderResult);
     assertApi('gtmOnSuccess').wasCalled();
-- name: Event tag - Conversion confirmation - Order code - currency set
+- name: Event tag - Conversion confirmation - order code - currency set
   code: |-
     eventTagOrderMockData.orderCurrencyCheck = true;
     eventTagOrderMockData.orderCurrency = 'TRY';
