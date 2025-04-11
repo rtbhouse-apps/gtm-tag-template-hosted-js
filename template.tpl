@@ -156,91 +156,8 @@ ___TEMPLATE_PARAMETERS___
     "subParams": [
       {
         "type": "GROUP",
-        "name": "Tag Identifiers",
-        "displayName": "Tag Identifiers",
-        "groupStyle": "NO_ZIPPY",
-        "subParams": [
-          {
-            "type": "CHECKBOX",
-            "name": "tagUid",
-            "checkboxText": "User ID (cross-device)",
-            "simpleValueType": true,
-            "help": "The code should be added when you want to pass a unique and anonymized ID of the user - for example for cross-device targeting possibilities.",
-            "subParams": [
-              {
-                "type": "SELECT",
-                "name": "uid",
-                "displayName": "Variable containing the current user identifier:",
-                "macrosInSelect": true,
-                "selectItems": [],
-                "simpleValueType": true,
-                "help": "Select variable that contains string with an anonymized user identifier.",
-                "enablingConditions": [
-                  {
-                    "paramName": "tagUid",
-                    "paramValue": true,
-                    "type": "EQUALS"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "CHECKBOX",
-            "name": "tagAid",
-            "checkboxText": "Anonymous user ID",
-            "simpleValueType": true,
-            "help": "The code should be added when you want to pass a unique ID of an anonymous user.",
-            "subParams": [
-              {
-                "type": "SELECT",
-                "name": "aid",
-                "displayName": "Variable containing the current anonymous user identifier:",
-                "macrosInSelect": true,
-                "selectItems": [],
-                "simpleValueType": true,
-                "help": "Select variable that contains string with an anonymized ID of the user.",
-                "enablingConditions": [
-                  {
-                    "paramName": "tagAid",
-                    "paramValue": true,
-                    "type": "EQUALS"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "CHECKBOX",
-            "name": "tagSid",
-            "checkboxText": "Session ID",
-            "simpleValueType": true,
-            "subParams": [
-              {
-                "type": "SELECT",
-                "name": "sid",
-                "displayName": "Variable containing the current user session identifier:",
-                "macrosInSelect": true,
-                "selectItems": [],
-                "simpleValueType": true,
-                "help": "Select variable that contains string with a session ID of the user.",
-                "enablingConditions": [
-                  {
-                    "paramName": "tagSid",
-                    "paramValue": true,
-                    "type": "EQUALS"
-                  }
-                ]
-              }
-            ],
-            "help": "The code should be added when you want to pass an unique session ID of the user."
-          }
-        ]
-      },
-      {
-        "type": "GROUP",
-        "name": "Obligatory Tags",
-        "displayName": "Obligatory Tags",
+        "name": "Obligatory tags",
+        "displayName": "Obligatory tags",
         "subParams": [
           {
             "type": "CHECKBOX",
@@ -384,7 +301,7 @@ ___TEMPLATE_PARAMETERS___
           {
             "type": "CHECKBOX",
             "name": "tagOrder",
-            "checkboxText": "Conversion confirmation -  Order code",
+            "checkboxText": "Conversion confirmation - order code",
             "simpleValueType": true,
             "help": "This tag should be triggered on the order confirmation page for all orders placed on the website, regardless of traffic source.",
             "subParams": [
@@ -1247,6 +1164,89 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "GROUP",
+        "name": "Tag identifiers",
+        "displayName": "Tag identifiers",
+        "groupStyle": "NO_ZIPPY",
+        "subParams": [
+          {
+            "type": "CHECKBOX",
+            "name": "tagUid",
+            "checkboxText": "User ID (cross-device)",
+            "simpleValueType": true,
+            "help": "The code should be added when you want to pass a unique and anonymized ID of the user - for example for cross-device targeting possibilities.",
+            "subParams": [
+              {
+                "type": "SELECT",
+                "name": "uid",
+                "displayName": "Variable containing the current user identifier:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains string with an anonymized user identifier.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagUid",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "tagAid",
+            "checkboxText": "Anonymous user ID",
+            "simpleValueType": true,
+            "help": "The code should be added when you want to pass a unique ID of an anonymous user.",
+            "subParams": [
+              {
+                "type": "SELECT",
+                "name": "aid",
+                "displayName": "Variable containing the current anonymous user identifier:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains string with an anonymized ID of the user.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagAid",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "tagSid",
+            "checkboxText": "Session ID",
+            "simpleValueType": true,
+            "subParams": [
+              {
+                "type": "SELECT",
+                "name": "sid",
+                "displayName": "Variable containing the current user session identifier:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains string with a session ID of the user.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagSid",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ],
+            "help": "The code should be added when you want to pass an unique session ID of the user."
+          }
+        ]
+      },
+      {
+        "type": "GROUP",
         "name": "Other",
         "displayName": "Other",
         "groupStyle": "NO_ZIPPY",
@@ -1915,14 +1915,14 @@ scenarios:
 
     assertThat(rtbhEvents).contains(eventTagStartOrderResult);
     assertApi('gtmOnSuccess').wasCalled();
-- name: Event tag - Conversion confirmation - Order code - simple
+- name: Event tag - Conversion confirmation - order code - simple
   code: |-
     runCode(eventTagOrderMockData);
 
     assertThat(rtbhEvents).contains(eventTagOrderResult);
 
     assertApi('gtmOnSuccess').wasCalled();
-- name: Event tag - Conversion confirmation - Order code - conversion subclass
+- name: Event tag - Conversion confirmation - order code - conversion subclass
   code: |-
     eventTagOrderMockData.orderTagSubclassCheck = true;
     eventTagOrderMockData.orderTagSubClass = 'register';
@@ -1932,7 +1932,7 @@ scenarios:
 
     assertThat(rtbhEvents).contains(eventTagOrderResult);
     assertApi('gtmOnSuccess').wasCalled();
-- name: Event tag - Conversion confirmation - Order code - attributed order
+- name: Event tag - Conversion confirmation - order code - attributed order
   code: |-
     eventTagOrderMockData.orderIsAttributedCheck = true;
     eventTagOrderMockData.orderIsAttributed = 'rtb';
@@ -1942,7 +1942,7 @@ scenarios:
 
     assertThat(rtbhEvents).contains(eventTagOrderResult);
     assertApi('gtmOnSuccess').wasCalled();
-- name: Event tag - Conversion confirmation - Order code - currency set
+- name: Event tag - Conversion confirmation - order code - currency set
   code: |-
     eventTagOrderMockData.orderCurrencyCheck = true;
     eventTagOrderMockData.orderCurrency = 'TRY';
