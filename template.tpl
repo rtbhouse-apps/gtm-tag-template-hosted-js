@@ -156,89 +156,6 @@ ___TEMPLATE_PARAMETERS___
     "subParams": [
       {
         "type": "GROUP",
-        "name": "Tag identifiers",
-        "displayName": "Tag identifiers",
-        "groupStyle": "NO_ZIPPY",
-        "subParams": [
-          {
-            "type": "CHECKBOX",
-            "name": "tagUid",
-            "checkboxText": "User ID (cross-device)",
-            "simpleValueType": true,
-            "help": "The code should be added when you want to pass a unique and anonymized ID of the user - for example for cross-device targeting possibilities.",
-            "subParams": [
-              {
-                "type": "SELECT",
-                "name": "uid",
-                "displayName": "Variable containing the current user identifier:",
-                "macrosInSelect": true,
-                "selectItems": [],
-                "simpleValueType": true,
-                "help": "Select variable that contains string with an anonymized user identifier.",
-                "enablingConditions": [
-                  {
-                    "paramName": "tagUid",
-                    "paramValue": true,
-                    "type": "EQUALS"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "CHECKBOX",
-            "name": "tagAid",
-            "checkboxText": "Anonymous user ID",
-            "simpleValueType": true,
-            "help": "The code should be added when you want to pass a unique ID of an anonymous user.",
-            "subParams": [
-              {
-                "type": "SELECT",
-                "name": "aid",
-                "displayName": "Variable containing the current anonymous user identifier:",
-                "macrosInSelect": true,
-                "selectItems": [],
-                "simpleValueType": true,
-                "help": "Select variable that contains string with an anonymized ID of the user.",
-                "enablingConditions": [
-                  {
-                    "paramName": "tagAid",
-                    "paramValue": true,
-                    "type": "EQUALS"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "CHECKBOX",
-            "name": "tagSid",
-            "checkboxText": "Session ID",
-            "simpleValueType": true,
-            "subParams": [
-              {
-                "type": "SELECT",
-                "name": "sid",
-                "displayName": "Variable containing the current user session identifier:",
-                "macrosInSelect": true,
-                "selectItems": [],
-                "simpleValueType": true,
-                "help": "Select variable that contains string with a session ID of the user.",
-                "enablingConditions": [
-                  {
-                    "paramName": "tagSid",
-                    "paramValue": true,
-                    "type": "EQUALS"
-                  }
-                ]
-              }
-            ],
-            "help": "The code should be added when you want to pass an unique session ID of the user."
-          }
-        ]
-      },
-      {
-        "type": "GROUP",
         "name": "Obligatory tags",
         "displayName": "Obligatory tags",
         "subParams": [
@@ -1242,6 +1159,89 @@ ___TEMPLATE_PARAMETERS___
             "checkboxText": "Offline store checking code",
             "simpleValueType": true,
             "help": "This code should be executed every time a user checks product availability in an offline store."
+          }
+        ]
+      },
+      {
+        "type": "GROUP",
+        "name": "Tag identifiers",
+        "displayName": "Tag identifiers",
+        "groupStyle": "NO_ZIPPY",
+        "subParams": [
+          {
+            "type": "CHECKBOX",
+            "name": "tagUid",
+            "checkboxText": "User ID (cross-device)",
+            "simpleValueType": true,
+            "help": "The code should be added when you want to pass a unique and anonymized ID of the user - for example for cross-device targeting possibilities.",
+            "subParams": [
+              {
+                "type": "SELECT",
+                "name": "uid",
+                "displayName": "Variable containing the current user identifier:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains string with an anonymized user identifier.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagUid",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "tagAid",
+            "checkboxText": "Anonymous user ID",
+            "simpleValueType": true,
+            "help": "The code should be added when you want to pass a unique ID of an anonymous user.",
+            "subParams": [
+              {
+                "type": "SELECT",
+                "name": "aid",
+                "displayName": "Variable containing the current anonymous user identifier:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains string with an anonymized ID of the user.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagAid",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "CHECKBOX",
+            "name": "tagSid",
+            "checkboxText": "Session ID",
+            "simpleValueType": true,
+            "subParams": [
+              {
+                "type": "SELECT",
+                "name": "sid",
+                "displayName": "Variable containing the current user session identifier:",
+                "macrosInSelect": true,
+                "selectItems": [],
+                "simpleValueType": true,
+                "help": "Select variable that contains string with a session ID of the user.",
+                "enablingConditions": [
+                  {
+                    "paramName": "tagSid",
+                    "paramValue": true,
+                    "type": "EQUALS"
+                  }
+                ]
+              }
+            ],
+            "help": "The code should be added when you want to pass an unique session ID of the user."
           }
         ]
       },
