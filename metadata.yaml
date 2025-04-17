@@ -2,6 +2,9 @@ homepage: "https://www.rtbhouse.com"
 documentation: "https://github.com/rtbhouse-apps/gtm-tag-template-hosted-js/blob/master/README.md"
 
 versions:
+  - sha: 1e1ec2f5559450f3281b9bfb68e63bb7355a016c
+    changeNotes: Standardizing capitalization in Event tag groups and tag names, moving Tag Identifiers group lower
+  
   - sha: fd0ca1293149b7bc0d33c429f0b9576d12f8a990
     changeNotes: Updating conversion initiation code
 
