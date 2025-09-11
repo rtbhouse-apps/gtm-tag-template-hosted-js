@@ -1024,7 +1024,7 @@ ___TEMPLATE_PARAMETERS___
                     "simpleValueType": true,
                     "enablingConditions": [
                       {
-                        "paramName": "conversionIsAttributed",
+                        "paramName": "conversionIsAttributedCheck",
                         "paramValue": true,
                         "type": "EQUALS"
                       }
