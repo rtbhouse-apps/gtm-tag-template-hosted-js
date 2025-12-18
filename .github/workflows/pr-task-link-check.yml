@@ -1,0 +1,12 @@
+name: PR Task Link Check
+
+on:
+  pull_request:
+    types: [opened, reopened, edited]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  pr-task-link-check:
+    uses: RTBHouse-Traffic/common-workflows/.github/workflows/pr-task-link-check.yml@main
